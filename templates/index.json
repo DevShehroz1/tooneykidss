@@ -91,49 +91,11 @@
     "1646028739ae283905": {
       "type": "slideshow",
       "blocks": {
-        "image_parent_KXN6pR": {
-          "type": "image_parent",
-          "settings": {
-            "image": "shopify://shop_images/bnr_2_e60d2c5b-cf2c-49ed-9d2a-f6278db841fb.webp",
-            "image_position": "8",
-            "cl_img": "",
-            "link_img1": "shopify://collections/all",
-            "open_link": "_blank",
-            "animate_slide": "none",
-            "text_align": "center",
-            "text_align_mb": "center",
-            "content_width": "auto",
-            "cv_pos": 50,
-            "ch_pos": 50,
-            "cv_pos_mb": 50,
-            "ch_pos_mb": 50,
-            "bg_overlay": "#000000",
-            "bg_opacity": 0,
-            "bg_content_cl": "#ffffff",
-            "bg_content_op": 0,
-            "content_radius": 0,
-            "box_square": false,
-            "content_pd_tb": 15,
-            "content_pd_lr": 15,
-            "content_pd_tb_tb": 15,
-            "content_pd_lr_tb": 15,
-            "content_pd_tb_mb": 10,
-            "content_pd_lr_mb": 10,
-            "border_bl": false,
-            "br_color": "#222222",
-            "br_bg": "#ffffff",
-            "br_opacity": 50,
-            "br_style": "solid",
-            "br_pd": 20,
-            "br_pd_mb": 10,
-            "time_animation": 1,
-            "animation_delay": 40
-          }
-        },
         "164602873867eb3815-4": {
           "type": "image_parent",
           "settings": {
-            "image": "shopify://shop_images/ss1.webp",
+            "image": "shopify://shop_images/1920x550.jpg",
+            "image_mb": "shopify://shop_images/1100X1500.jpg",
             "image_position": "8",
             "cl_img": "",
             "link_img1": "https://factoryx.pk/collections/men-t-shirts",
@@ -210,12 +172,11 @@
         }
       },
       "block_order": [
-        "image_parent_KXN6pR",
         "164602873867eb3815-4",
         "image_parent_DrjLNX"
       ],
       "settings": {
-        "se_height": "t4s_ratio_cuspx",
+        "se_height": "t4s_ratioadapt",
         "custom_dk": true,
         "height_dk": 700,
         "custom_tb": true,
