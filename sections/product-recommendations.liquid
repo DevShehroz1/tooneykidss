@@ -99,7 +99,8 @@
       assign slider_class = slider_class | append: ' t4s-dots-style-' | append: se_stts.dot_owl | append: ' t4s-dots-cl-' | append: se_stts.dots_cl | append: ' t4s-dots-round-' | append: se_stts.dots_round | append: ' t4s-dots-hidden-mobile-' | append: se_stts.dots_hidden_mobile
     endif
     assign slider_class = slider_class | append: ' flickityt4s flickityt4s-later'
-    assign flickity_js = '{"setPrevNextButtons":true,"arrowIcon":"' | append: arrow_icon | append: '","imagesLoaded": 0,"adaptiveHeight": 0, "contain": 1, "groupCells": "100%", "dragThreshold" : 5, "cellAlign": "left","wrapAround": ' | append: se_stts.loop | append: ',"prevNextButtons": ' | append: se_stts.nav_btn | append: ',"percentPosition": 1,"pageDots": ' | append: se_stts.nav_dot | append: ', "autoPlay" : ' | append: se_stts.au_time | times: 1000 | append: ', "pauseAutoPlayOnHover" : ' | append: se_stts.au_hover | append: ' }'
+    assign au_time_ms = se_stts.au_time | times: 1000
+    assign flickity_js = '{"setPrevNextButtons":true,"arrowIcon":"' | append: arrow_icon | append: '","imagesLoaded": 0,"adaptiveHeight": 0, "contain": 1, "groupCells": "100%", "dragThreshold" : 5, "cellAlign": "left","wrapAround": ' | append: se_stts.loop | append: ',"prevNextButtons": ' | append: se_stts.nav_btn | append: ',"percentPosition": 1,"pageDots": ' | append: se_stts.nav_dot | append: ', "autoPlay" : ' | append: au_time_ms | append: ', "pauseAutoPlayOnHover" : ' | append: se_stts.au_hover | append: ' }'
     assign slider_style = '--space-dots: ' | append: se_stts.dots_space | append: 'px;--flickity-btn-pos: ' | append: se_stts.space_h_item | append: 'px;--flickity-btn-pos-mb: ' | append: se_stts.space_h_item_mb | append: 'px;'
   -%}
 
