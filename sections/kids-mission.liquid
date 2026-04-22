@@ -1,0 +1,436 @@
+{% style %}
+  #kmiss-{{ section.id }} {
+    display: block;
+    margin-top: {{ section.settings.margin_top }}px;
+    margin-bottom: {{ section.settings.margin_bottom }}px;
+  }
+  #kmiss-{{ section.id }} .kmiss-wave {
+    display: block;
+    width: 100%;
+    height: {{ section.settings.wave_height }}px;
+    color: {{ section.settings.bg }};
+    line-height: 0;
+    pointer-events: none;
+  }
+  #kmiss-{{ section.id }} .kmiss-wave svg { width: 100%; height: 100%; display: block; }
+  #kmiss-{{ section.id }} .kmiss-wave--top { margin-bottom: {{ section.settings.wave_gap }}px; }
+  #kmiss-{{ section.id }} .kmiss-wave--bottom { transform: scaleY(-1); margin-top: {{ section.settings.wave_gap }}px; }
+  #kmiss-{{ section.id }} .kmiss-body {
+    background: {{ section.settings.bg }};
+    padding-top: {{ section.settings.pad_top }}px;
+    padding-bottom: {{ section.settings.pad_bottom }}px;
+    text-align: center;
+  }
+  #kmiss-{{ section.id }} .kmiss-inner {
+    max-width: {{ section.settings.max_width }}px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 1;
+  }
+  #kmiss-{{ section.id }} .kmiss-eyebrow {
+    font-family: var(--font-heading-family, inherit);
+    font-size: {{ section.settings.eyebrow_size }}px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: {{ section.settings.eyebrow_color }};
+    margin: 0 0 {{ section.settings.eyebrow_gap }}px;
+  }
+  #kmiss-{{ section.id }} .kmiss-heading {
+    font-family: var(--font-heading-family, inherit);
+    font-size: {{ section.settings.heading_size }}px;
+    line-height: 1.55;
+    color: {{ section.settings.heading_color }};
+    margin: 0 auto {{ section.settings.heading_gap }}px;
+    font-weight: 500;
+  }
+  #kmiss-{{ section.id }} .kmiss-heading .kmiss-icon {
+    display: inline-block;
+    vertical-align: middle;
+    width: {{ section.settings.icon_size }}px;
+    height: {{ section.settings.icon_size }}px;
+    margin: 0 {{ section.settings.icon_spacing }}px;
+    position: relative;
+    top: -0.1em;
+  }
+  #kmiss-{{ section.id }} .kmiss-heading .kmiss-icon img { width: 100%; height: 100%; display: block; object-fit: contain; }
+  #kmiss-{{ section.id }} .kmiss-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: {{ section.settings.btn_pad_y }}px {{ section.settings.btn_pad_x }}px;
+    border-radius: 999px;
+    background: {{ section.settings.btn_bg }};
+    color: {{ section.settings.btn_color }};
+    font-family: var(--font-heading-family, inherit);
+    font-size: {{ section.settings.btn_size }}px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform .2s ease, filter .2s ease;
+  }
+  #kmiss-{{ section.id }} .kmiss-btn:hover { transform: translateY(-1px); filter: brightness(1.05); }
+  #kmiss-{{ section.id }} .kmiss-btn svg { width: 14px; height: 14px; }
+  @media (max-width: 767px) {
+    #kmiss-{{ section.id }} .kmiss-heading { font-size: {{ section.settings.heading_size_mb }}px; line-height: 1.5; }
+    #kmiss-{{ section.id }} .kmiss-heading .kmiss-icon { width: {{ section.settings.icon_size_mb }}px; height: {{ section.settings.icon_size_mb }}px; margin: 0 6px; }
+    #kmiss-{{ section.id }} .kmiss-body { padding-top: {{ section.settings.pad_top_mb }}px; padding-bottom: {{ section.settings.pad_bottom_mb }}px; }
+  }
+{% endstyle %}
+
+{%- capture wave_svg -%}
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 100" width="100%" height="100%" preserveAspectRatio="none" aria-hidden="true"><path d="M 0 50 Q 53.33 50 106.67 0 Q 160 50 213.33 50 Q 266.67 50 320 0 Q 373.33 50 426.67 50 Q 480 50 533.33 0 Q 586.67 50 640 50 Q 693.33 50 746.67 0 Q 800 50 853.33 50 Q 906.67 50 960 0 Q 1013.33 50 1066.67 50 Q 1120 50 1173.33 0 Q 1226.67 50 1280 50 Q 1333.33 50 1386.67 0 Q 1440 50 1493.33 50 L 1280 100 L 0 100 Z" fill="currentColor"></path></svg>
+{%- endcapture -%}
+
+<div id="kmiss-{{ section.id }}" class="kids-mission">
+  {% if section.settings.show_top_wave %}
+    <div class="kmiss-wave kmiss-wave--top" aria-hidden="true">{{ wave_svg }}</div>
+  {% endif %}
+
+  <div class="kmiss-body">
+  <div class="kmiss-inner">
+    {% if section.settings.eyebrow != blank %}
+      <p class="kmiss-eyebrow">{{ section.settings.eyebrow }}</p>
+    {% endif %}
+
+    {%- liquid
+      assign heading = section.settings.heading
+      assign icon1_url = 'kids-mission-icon1.svg' | asset_url
+      assign icon2_url = 'kids-mission-icon2.svg' | asset_url
+      assign icon3_url = 'kids-mission-icon3.svg' | asset_url
+      capture icon1
+        echo '<span class="kmiss-icon"><img src="'
+        echo icon1_url
+        echo '" alt="" loading="lazy"></span>'
+      endcapture
+      capture icon2
+        echo '<span class="kmiss-icon"><img src="'
+        echo icon2_url
+        echo '" alt="" loading="lazy"></span>'
+      endcapture
+      capture icon3
+        echo '<span class="kmiss-icon"><img src="'
+        echo icon3_url
+        echo '" alt="" loading="lazy"></span>'
+      endcapture
+      assign heading = heading | replace: '[icon1]', icon1 | replace: '[icon2]', icon2 | replace: '[icon3]', icon3
+    -%}
+    <h2 class="kmiss-heading">{{ heading }}</h2>
+
+    {% if section.settings.btn_label != blank and section.settings.btn_url != blank %}
+      <a class="kmiss-btn" href="{{ section.settings.btn_url }}">
+        {{ section.settings.btn_label }}
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    {% endif %}
+  </div>
+  </div>
+
+  {% if section.settings.show_bottom_wave %}
+    <div class="kmiss-wave kmiss-wave--bottom" aria-hidden="true">{{ wave_svg }}</div>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Mission statement",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow label",
+      "default": "OUR MISSION"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "info": "Use [icon1], [icon2], [icon3] to place the three SVG icons inline.",
+      "default": "Baby's dressing Choise in [icon1] Colorful Confidence. [icon2] Discover Trendy Clothes, Fun Toys, and Baby Essentials for Your Precious [icon3] Ones Smile Kids"
+    },
+    {
+      "type": "text",
+      "id": "btn_label",
+      "label": "Button label",
+      "default": "Discover Collections"
+    },
+    {
+      "type": "url",
+      "id": "btn_url",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Wavy edges"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_top_wave",
+      "label": "Show top wave",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_bottom_wave",
+      "label": "Show bottom wave",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "wave_height",
+      "label": "Wave height",
+      "min": 6,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "default": 22
+    },
+    {
+      "type": "range",
+      "id": "wave_gap",
+      "label": "Gap between wave and body",
+      "info": "White space between the wave divider and the cream body.",
+      "min": 0,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "label": "Outer space above",
+      "min": 0,
+      "max": 160,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "label": "Outer space below",
+      "min": 0,
+      "max": 160,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Max content width",
+      "min": 600,
+      "max": 1400,
+      "step": 20,
+      "unit": "px",
+      "default": 1080
+    },
+    {
+      "type": "range",
+      "id": "pad_top",
+      "label": "Padding top",
+      "min": 40,
+      "max": 240,
+      "step": 4,
+      "unit": "px",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "pad_bottom",
+      "label": "Padding bottom",
+      "min": 40,
+      "max": 240,
+      "step": 4,
+      "unit": "px",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "pad_top_mb",
+      "label": "Padding top (mobile)",
+      "min": 20,
+      "max": 160,
+      "step": 2,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "pad_bottom_mb",
+      "label": "Padding bottom (mobile)",
+      "min": 20,
+      "max": 160,
+      "step": 2,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "eyebrow_size",
+      "label": "Eyebrow size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "eyebrow_gap",
+      "label": "Eyebrow bottom space",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size (desktop)",
+      "min": 20,
+      "max": 56,
+      "step": 1,
+      "unit": "px",
+      "default": 34
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mb",
+      "label": "Heading size (mobile)",
+      "min": 16,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 22
+    },
+    {
+      "type": "range",
+      "id": "heading_gap",
+      "label": "Heading bottom space",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "label": "Inline icon size (desktop)",
+      "min": 18,
+      "max": 72,
+      "step": 1,
+      "unit": "px",
+      "default": 44
+    },
+    {
+      "type": "range",
+      "id": "icon_size_mb",
+      "label": "Inline icon size (mobile)",
+      "min": 14,
+      "max": 48,
+      "step": 1,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "icon_spacing",
+      "label": "Icon horizontal spacing",
+      "min": 0,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "range",
+      "id": "btn_size",
+      "label": "Button font size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "btn_pad_x",
+      "label": "Button padding X",
+      "min": 12,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "btn_pad_y",
+      "label": "Button padding Y",
+      "min": 6,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg",
+      "label": "Section background",
+      "default": "#F4ECD8"
+    },
+    {
+      "type": "color",
+      "id": "eyebrow_color",
+      "label": "Eyebrow color",
+      "default": "#2C3A4B"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#2C3A4B"
+    },
+    {
+      "type": "color",
+      "id": "btn_bg",
+      "label": "Button background",
+      "default": "#EC6A8E"
+    },
+    {
+      "type": "color",
+      "id": "btn_color",
+      "label": "Button text",
+      "default": "#ffffff"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Mission statement",
+      "category": "Homepage"
+    }
+  ]
+}
+{% endschema %}

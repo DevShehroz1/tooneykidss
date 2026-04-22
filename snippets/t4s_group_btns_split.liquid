@@ -1,0 +1,239 @@
+{%- comment -%}
+t4s_group_btns
+t4s_group_btns_split
+{%- endcomment -%}
+
+{%- if isSplit1 -%}
+<svg xmlns="http://www.w3.org/2000/svg" class="t4s-d-none">
+  <symbol id="icon-h-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="11" cy="11" r="7"></circle>
+    <line x1="16.5" y1="16.5" x2="21.5" y2="21.5"></line>
+  </symbol>
+  <symbol id="icon-h-account" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="8" r="4"></circle>
+    <path d="M5 20.5c0-3.866 3.134-6.5 7-6.5s7 2.634 7 6.5"></path>
+  </symbol>
+  <symbol id="icon-h-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+  </symbol>
+  <symbol id="icon-h-cart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M5 8h14l1.1 13a1 1 0 0 1-1 1.1H4.9a1 1 0 0 1-1-1.1L5 8z"/>
+    <path d="M8 10V7a4 4 0 0 1 8 0v3"/>
+  </symbol>
+</svg>
+
+{%- endif -%}
+
+{%- if isSplit1 -%}
+		<div class="t4s-site-nav__icons t4s-use__{{ se_stts.h_icon }} is--hover{{ se_stts.hover_icon }} t4s-h-cart__design{{ se_stts.cart_des }} t4s-lh-1 t4s-d-inline-flex t4s-align-items-center">
+			{%- if se_stts.show_search -%}
+			<div class="t4s-site-nav__icon t4s-site-nav__search">
+				<a class="t4s-pr" href="{{ routes.search_url }}" data-drawer-delay- data-drawer-options='{ "id":"#t4s-search-hidden" }'>
+					<svg class="t4s-icon t4s-icon--search" aria-hidden="true" focusable="false" role="presentation"><use href="#icon-h-search"></use></svg>
+				</a>
+		   </div>
+		   {%- endif -%}
+		   	{%- if shop.customer_accounts_enabled and se_stts.show_acc -%}
+				<div class="t4s-site-nav__icon t4s-site-nav__account t4s-pr t4s-d-none t4s-d-md-inline-block">
+					<a class="t4s-pr" href="{{ routes.account_url }}"{% unless customer or request.page_type contains 'customers' or settings.login_side == false %} data-drawer-delay- data-drawer-options='{ "id":"#t4s-login-sidebar" }' {% endunless %}>
+						<svg class="t4s-icon t4s-icon--account" aria-hidden="true" focusable="false" role="presentation"><use href="#icon-h-account"></use></svg>
+					</a>
+					{%- if customer -%}
+						<ul class="t4s-my-account-split">
+							<li><a class="t4s-d-block" href="{{ routes.account_url }}">{{ 'customer.account.dashboard' | t }}</a></li>
+							<li><a class="t4s-d-block" href="{{ routes.account_addresses_url }}">{{ 'customer.menu.addresses' | t }}</a></li>
+							<li><a class="t4s-d-block" href="{{ routes.account_logout_url }}" data-no-instant>{{ 'customer.account.log_out' | t }}</a></li>
+						</ul>
+						{%- style -%}
+							.t4s-site-nav__account .t4s-my-account-split{
+								position: absolute;
+								top: 100%;
+								z-index: 380;
+								background-color: var(--t4s-body-background);
+								box-shadow: 0 0 3px rgb(0 0 0 / 15%);
+								list-style: none;
+								left: -5px;
+								width: 165px;
+								padding: 10px 0;
+								line-height: 1.4;
+								margin-top: 12px;
+								border-radius: 3px;
+								transform: translateY(15px) translateZ(0);
+								visibility: hidden;
+								transition: opacity .2s,visibility .2s,transform .2s;
+								opacity:0;
+								text-align: end;
+							}
+							.t4s-site-nav__account .t4s-my-account-split::after{
+								content: "";
+								position: absolute;
+								top: auto;
+								right: 0;
+								bottom: 100%;
+								left: 0;
+								width: auto;
+								height: 12px;
+							}
+							.t4s-site-nav__account .t4s-my-account-split a{padding: 8px 18px;color:var(--text-color);}
+							.rtl_true .t4s-site-nav__account .t4s-my-account-split{right:-5px;left:auto;}
+							@media (-moz-touch-enabled: 0), (hover: hover) and (min-width: 1025px){
+								.t4s-site-nav__account .t4s-my-account-split a:hover{color: var(--accent-color)!important;}
+								.t4s-site-nav__account:hover .t4s-my-account-split{
+									pointer-events: auto;
+									visibility: visible;
+									opacity: 1;
+									transform: none;
+								}
+							}
+						{%- endstyle -%}
+				{%- endif -%}
+				</div>
+		   	{%- endif -%}
+		</div>
+{%- else -%}
+		<div class="t4s-site-nav__icons t4s-use__{{ se_stts.h_icon }} t4s-h-cart__design{{ se_stts.cart_des }} t4s-lh-1 t4s-d-inline-flex t4s-align-items-center">
+			{%- if se_stts.show_search -%}
+			<div class="t4s-site-nav__icon t4s-site-nav__search t4s-d-lg-none">
+				<a class="t4s-pr" href="{{ routes.search_url }}" data-drawer-delay- data-drawer-options='{ "id":"#t4s-search-hidden" }'>
+					<svg class="t4s-icon t4s-icon--search" aria-hidden="true" focusable="false" role="presentation"><use href="#icon-h-search"></use></svg>
+				</a>
+		   </div>
+		   {%- endif -%}
+		   	{%- if shop.customer_accounts_enabled and se_stts.show_acc -%}
+				<div class="t4s-site-nav__icon t4s-site-nav__account t4s-pr t4s-d-none t4s-d-md-inline-block t4s-d-lg-none">
+					<a class="t4s-pr" href="{{ routes.account_url }}"{% unless customer or request.page_type contains 'customers' or settings.login_side == false %} data-drawer-delay- data-drawer-options='{ "id":"#t4s-login-sidebar" }' {% endunless %}>
+						<svg class="t4s-icon t4s-icon--account" aria-hidden="true" focusable="false" role="presentation"><use href="#icon-h-account"></use></svg>
+					</a>
+					{%- if customer -%}
+						<ul class="t4s-my-account">
+							<li><a class="t4s-d-block" href="{{ routes.account_url }}">{{ 'customer.account.dashboard' | t }}</a></li>
+							<li><a class="t4s-d-block" href="{{ routes.account_addresses_url }}">{{ 'customer.menu.addresses' | t }}</a></li>
+							<li><a class="t4s-d-block" href="{{ routes.account_logout_url }}" data-no-instant>{{ 'customer.account.log_out' | t }}</a></li>
+						</ul>
+						{%- style -%}
+							.t4s-site-nav__account .t4s-my-account{
+								position: absolute;
+								top: 100%;
+								z-index: 380;
+								background-color: var(--t4s-body-background);
+								box-shadow: 0 0 3px rgb(0 0 0 / 15%);
+								list-style: none;
+								right: -5px;
+								width: 165px;
+								padding: 10px 0;
+								line-height: 1.4;
+								margin-top: 12px;
+								border-radius: 3px;
+								transform: translateY(15px) translateZ(0);
+								visibility: hidden;
+								transition: opacity .2s,visibility .2s,transform .2s;
+								opacity:0;
+								text-align: start;
+							}
+							.t4s-site-nav__account .t4s-my-account::after{
+								content: "";
+								position: absolute;
+								top: auto;
+								right: 0;
+								bottom: 100%;
+								left: 0;
+								width: auto;
+								height: 12px;
+							}
+							.t4s-site-nav__account .t4s-my-account a{padding: 8px 18px;color:var(--text-color)}
+							.rtl_true .t4s-site-nav__account .t4s-my-account{left:-5px;right:auto;}
+							@media (-moz-touch-enabled: 0), (hover: hover) and (min-width: 1025px){
+								.t4s-site-nav__account .t4s-my-account a:hover{color: var(--h-text-color-hover)!important}
+								.t4s-site-nav__account:hover .t4s-my-account{
+									pointer-events: auto;
+									visibility: visible;
+									opacity: 1;
+									transform: none;
+								}
+							}
+						{%- endstyle -%}
+					{%- endif -%}
+			</div>
+		   	{%- endif -%}
+			{%- if se_stts.show_wis -%}
+		   <div class="t4s-site-nav__icon t4s-site-nav__heart t4s-d-none t4s-d-md-inline-block">	
+		      {%- if settings.wishlist_mode != '3' -%}		
+			      <a data-link-wishlist class="t4s-pr" href="{{ routes.search_url }}/?view=wishlist">
+					  <svg class="t4s-icon t4s-icon--heart" aria-hidden="true" focusable="false" role="presentation"><use href="#icon-h-heart"></use></svg>
+					  <span data-count-wishlist class="t4s-pa t4s-op-0 t4s-ts-op t4s-count-box">0</span>
+			      </a>
+			   {%- else -%}
+			      {%- capture the_snippet_fave_icon_menu %}{% render 'ssw-widget-faveicon-menu' with product.id %}{% endcapture -%}
+			      {%- unless the_snippet_fave_icon_menu contains 'Liquid error' %}{{ the_snippet_fave_icon_menu }}{% endunless -%}
+		      {%- endif -%}
+		   </div>
+		   {%- endif -%}
+
+			{%- if se_stts.cart_des != '0' -%}
+		   <div class="t4s-site-nav__icon t4s-site-nav__cart">	
+				<a href="{{ routes.cart_url }}"{% if request.page_type != 'cart' and settings.cart_type != 'disable' %} data-drawer-delay- data-drawer-options='{ "id":"#t4s-mini_cart" }'{% endif %}>
+					<span class="t4s-pr t4s-icon-cart__wrap">
+					  <svg class="t4s-icon t4s-icon--account" aria-hidden="true" focusable="false" role="presentation"><use href="#icon-h-cart"></use></svg>
+					  <span data-cart-count class="t4s-pa t4s-op-0 t4s-ts-op t4s-count-box">{{ cart.item_count }}</span>
+					</span>
+					<span class="t4s-h-cart-totals t4s-dn">
+						<span class="t4s-h-cart__divider t4s-dn">/</span>
+						<span data-cart-tt-price class="t4s-h-cart__total">{{ cart.total_price | money }}</span>
+					</span>
+		      </a>
+		    </div>
+		   {%- endif -%}
+
+		</div>
+
+		{%- if se_stts.cart_des != '0' -%}
+		 <style>
+			.t4s-h-cart__design3 .t4s-count-box {
+			    width: 19px;
+			    height: 19px;
+			    line-height: 19px;
+			    position: static;
+			    display: inline-block;
+			}
+			.t4s-h-cart__design2 .t4s-site-nav__icon:last-child,
+			.t4s-h-cart__design3 .t4s-site-nav__icon:last-child,
+			.t4s-h-cart__design4 .t4s-site-nav__icon:last-child,
+			.t4s-h-cart__design5 .t4s-site-nav__icon:last-child {
+			    padding-right: 0;
+			}
+		 @media (min-width: 768px) {
+
+		    	.t4s-h-cart__design2 .t4s-site-nav__cart a,
+		    	.t4s-h-cart__design4 .t4s-site-nav__cart a,
+		    	.t4s-h-cart__design5 .t4s-site-nav__cart a {
+			      display: flex;
+				   align-items: center;
+				   justify-content: center;
+		    	}
+		    	.t4s-h-cart__design2 .t4s-h-cart-totals,
+		    	.t4s-h-cart__design4 .t4s-h-cart-totals {
+				    display: block;
+				    margin-left: 15px;
+				}
+				.t4s-h-cart__design4 .t4s-site-nav__cart .t4s-count-box,
+				.t4s-h-cart__design5 .t4s-site-nav__cart .t4s-count-box {
+					display: none
+				}
+				.t4s-h-cart__design4 .t4s-h-cart-totals {
+					margin-left: 7px;
+				}
+				.t4s-h-cart__design5 .t4s-h-cart__divider {
+				    display: inline-block;
+				}
+				.t4s-h-cart__design5 .t4s-h-cart-totals {
+				    display: block;
+				    margin-left: 7px;
+				}
+				
+				.t4s-h-cart__design1 .t4s-site-nav__icon.t4s-site-nav__btnMenu {
+				    padding-right: 0;
+				}
+		 }
+		 </style>
+		{%- endif -%}
+{%- endif -%}

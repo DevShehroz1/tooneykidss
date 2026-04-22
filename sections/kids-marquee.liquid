@@ -1,0 +1,199 @@
+{% style %}
+  #km-{{ section.id }} {
+    background: {{ section.settings.bg_color }};
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    overflow: hidden;
+  }
+  #km-{{ section.id }} .km-track {
+    display: flex;
+    align-items: center;
+    gap: {{ section.settings.gap }}px;
+    width: max-content;
+    animation: km-scroll-{{ section.id }} {{ section.settings.speed }}s linear infinite;
+  }
+  #km-{{ section.id }}:hover .km-track { animation-play-state: paused; }
+  #km-{{ section.id }} .km-group {
+    display: flex;
+    align-items: center;
+    gap: {{ section.settings.gap }}px;
+    flex-shrink: 0;
+  }
+  #km-{{ section.id }} .km-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: {{ section.settings.pill_pad_y }}px {{ section.settings.pill_pad_x }}px;
+    border-radius: 999px;
+    font-size: {{ section.settings.font_size }}px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  #km-{{ section.id }} .km-sep {
+    width: {{ section.settings.star_size }}px;
+    height: {{ section.settings.star_size }}px;
+    flex-shrink: 0;
+    color: {{ section.settings.star_color }};
+  }
+  @keyframes km-scroll-{{ section.id }} {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+{% endstyle %}
+
+{% capture km_star %}<img class="km-sep" src="{{ 'kids-marquee-star.svg' | asset_url }}" alt="" loading="lazy" width="46" height="46">{% endcapture %}
+
+<div id="km-{{ section.id }}" class="kids-marquee">
+  <div class="km-track">
+    <div class="km-group">
+      {% for block in section.blocks %}
+        <span class="km-pill" style="background:{{ block.settings.bg }};color:{{ block.settings.cl }};" {{ block.shopify_attributes }}>{{ block.settings.label }}</span>
+        {{ km_star }}
+      {% endfor %}
+    </div>
+    <div class="km-group" aria-hidden="true">
+      {% for block in section.blocks %}
+        <span class="km-pill" style="background:{{ block.settings.bg }};color:{{ block.settings.cl }};">{{ block.settings.label }}</span>
+        {{ km_star }}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Kids marquee",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "star_color",
+      "label": "Star color",
+      "default": "#E55733"
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "label": "Scroll duration",
+      "min": 10,
+      "max": 120,
+      "step": 2,
+      "unit": "s",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "label": "Font size",
+      "min": 12,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 19
+    },
+    {
+      "type": "range",
+      "id": "pill_pad_x",
+      "label": "Pill padding X",
+      "min": 6,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "pill_pad_y",
+      "label": "Pill padding Y",
+      "min": 4,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 9
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "Gap",
+      "min": 4,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "star_size",
+      "label": "Star size",
+      "min": 16,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 46
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    }
+  ],
+  "blocks": [
+    {
+      "type": "pill",
+      "name": "Pill",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Unique Products"
+        },
+        {
+          "type": "color",
+          "id": "bg",
+          "label": "Pill background",
+          "default": "#9be3c0"
+        },
+        {
+          "type": "color",
+          "id": "cl",
+          "label": "Text color",
+          "default": "#1a3d2b"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "Kids marquee",
+      "category": "Promotional",
+      "blocks": [
+        { "type": "pill", "settings": { "label": "Unique Products", "bg": "#9be3c0", "cl": "#1a3d2b" } },
+        { "type": "pill", "settings": { "label": "High Quality", "bg": "#c9a6ff", "cl": "#3a1b75" } },
+        { "type": "pill", "settings": { "label": "Sustainable", "bg": "#f5a0a8", "cl": "#7a1530" } },
+        { "type": "pill", "settings": { "label": "Exclusive Designs", "bg": "#f3b26a", "cl": "#6b3511" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

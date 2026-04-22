@@ -1,0 +1,342 @@
+{%- if section.settings.show_announcement -%}
+  {%- liquid
+    assign theme_name = 'kalles'
+    assign se_stts = section.settings
+    assign label = 'sections.announcement.label' | t -%}
+  {%- capture cap_btn -%}{%- if se_stts.close != '0' -%}<div class="t4s-col-item t4s-col-auto t4s-d-none t4s-d-md-block"><button class="t4s-announcement-bar__close t4s-op-0"><svg role="presentation" class="t4s-iconsvg-close" viewBox="0 0 16 14"><path d="M15 0L1 14m14 0L1 0" stroke="currentColor" fill="none" fill-rule="evenodd"></path></svg> {{ 'sections.announcement.close' | t }}</button></div>{%- endif -%}{%- endcapture -%}
+  {{ 'pre_flickityt4s.min.css' | asset_url | stylesheet_tag }}
+
+  {%- style -%}
+    {%- assign bg_op = se_stts.bg_op | divided_by: 100.0 -%}
+    .t4s-announcement-bar { background-color: {{ se_stts.bg | color_modify: 'alpha', bg_op }};min-height:{{ se_stts.height }}px;font-size:{{ se_stts.fontsize }}px;}
+    .t4s-announcement-bar__wrap,.t4s-announcement-bar__wrap a { color:{{ se_stts.cl }} }
+    .t4s-announcement-bar__wrap {padding: 5px 10px;min-height:{{ se_stts.height }}px}
+    .t4s-announcement-bar__item p a { z-index: 5;position: relative; }.t4s-announcement-bar__item p {margin-bottom:0} .t4s-announcement-bar__item strong {font-size: 14px;font-weight: 600;}
+    .t4s-announcement-bar__close { color:{{ se_stts.cl_btn }};padding: 0;background-color: transparent;line-height: 1;transition: .2s;font-size:{{ se_stts.fontsize }}px; }
+    .t4s-announcement-bar__close:hover,.t4s-announcement-bar__close:focus { background-color: transparent !important; opacity: .7; color:{{ se_stts.cl_btn }} !important; }
+    .t4s-announcement-bar .t4s-col-auto { line-height: 1; }.t4s-announcement-bar__item p a:hover { opacity: .7 }.t4s-announcement-bar.t4s-type-close-1 .t4s-iconsvg-close {width: 9px;height: 9px;stroke-width: 2px;}.t4s-announcement-bar:not(.t4s-type-close-1) .t4s-iconsvg-close {width: 15px;height: 15px;stroke-width: 1.5px;}.t4s-announcement-bar.t4s-type-close-2 .t4s-announcement-bar__close { font-size:0 !important }.t4s-announcement-bar.t4s-type-close-3 .t4s-iconsvg-close { display: none !important }.t4s-announcement-bar__close.t4s-op-0 { opacity: 0 !important; }
+    svg.t4s-icon-arrow {
+      width: 12px;display: inline-block;
+    }
+    .t4s-announcement-bar__item .t4s-icon-arrow {
+      -webkit-transition: .2s ease-in-out;
+      transition: -webkit-transform .2s ease-in-out,transform .2s ease-in-out;
+    }
+    .t4s-announcement-bar__item:hover .t4s-icon-arrow {
+       transform: translateX(0.25rem);
+    }
+    .t4s-announcement-bar .t4s-countdown-enabled {display: inline-block}
+
+    {%- if se_stts.scallop_style -%}
+    .t4s-ab-wrap { position: relative; width: 100%; }
+    .t4s-ab-top-strip { background: {{ se_stts.top_strip_bg }}; height: {{ se_stts.top_strip_height }}px; width: 100%; display: block; }
+    .t4s-ab-wrap .t4s-announcement-bar { overflow: visible !important; }
+    .t4s-ab-scallop { display: block; width: 100%; overflow: hidden; height: {{ se_stts.scallop_height }}px; line-height: 0; color: {{ se_stts.bg | color_modify: 'alpha', bg_op }}; margin-top: -1px; pointer-events: none; }
+    .t4s-ab-scallop svg { width: 103%; height: 100%; display: block; }
+    .t4s-ab-scallop svg path { fill: currentColor; }
+    .t4s-ab-wrap .flickityt4s-prev-next-button { background: transparent !important; color: {{ se_stts.cl }}; width: 40px; height: 40px; opacity: 1; box-shadow: none; border: 0; }
+    .t4s-ab-wrap .flickityt4s-prev-next-button:hover { opacity: .65; background: transparent !important; }
+    .t4s-ab-wrap .flickityt4s-prev-next-button .flickityt4s-button-icon { fill: currentColor; }
+    .t4s-ab-wrap .flickityt4s-prev-next-button.previous { left: 12px; }
+    .t4s-ab-wrap .flickityt4s-prev-next-button.next { right: 12px; }
+    .t4s-ab-wrap .t4s-announcement-bar__item p { display: inline-flex; align-items: center; justify-content: center; gap: 10px; margin: 0; }
+    .t4s-ab-wrap .t4s-ab-icon { display: inline-flex; align-items: center; justify-content: center; color: currentColor; line-height: 0; }
+    .t4s-ab-wrap .t4s-ab-icon svg { width: 20px; height: 20px; display: block; }
+    {%- endif -%}
+  {%- endstyle -%}
+
+  {%- capture cap_icon_package -%}<span class="t4s-ab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></span>{%- endcapture -%}
+  {%- capture cap_icon_truck -%}<span class="t4s-ab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></span>{%- endcapture -%}
+  {%- capture cap_icon_gift -%}<span class="t4s-ab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg></span>{%- endcapture -%}
+  {%- capture cap_icon_heart -%}<span class="t4s-ab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>{%- endcapture -%}
+
+<svg class="t4s-d-none"><symbol id="icon-{{ section.id }}" viewBox="0 0 14 10" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M8.537.808a.5.5 0 01.817-.162l4 4a.5.5 0 010 .708l-4 4a.5.5 0 11-.708-.708L11.793 5.5H1a.5.5 0 010-1h10.793L8.646 1.354a.5.5 0 01-.109-.546z" fill="currentColor"></path></symbol></svg>
+{%- capture cap_arrow %}<svg class="t4s-icon t4s-icon-arrow" width="13" viewBox="0 0 14 10" fill="none" aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg"><use href="#icon-{{ section.id }}"/></svg>{% endcapture -%}
+
+  {%- if se_stts.scallop_style -%}<div class="t4s-ab-wrap">{%- if se_stts.top_strip_enabled -%}<div class="t4s-ab-top-strip"></div>{%- endif -%}{%- endif -%}
+
+  <div aria-hidden="false" class="t4s-announcement-bar t4s-pr t4s-oh t4s-type-close-{{ se_stts.close }}" data-ver='{{ se_stts.version }}_nt' data-date='{{ se_stts.date }}'>
+    <div class="t4s-container">
+       <div class="t4s-row t4s-gx-0 t4s-flex-nowrap t4s-align-items-center">
+
+          {{- cap_btn -}}
+
+          {%- if section.blocks.size > 0 -%}
+
+             <div class="t4s-announcement-bar__wrap t4s-col t4s-col-item t4s-d-flex t4s-align-items-center t4s-text-center t4s-row t4s-row-cols-1 t4s-g-0 flickityt4s{% if se_stts.effect == '1' %} t4s-slide-eff-fade{% endif %}" data-flickityt4s-js='{ "cellAlign": "center","imagesLoaded": 0,"lazyLoad": 0,"freeScroll": 0,"wrapAround": true,"autoPlay" : {{ se_stts.au_time | times: 1000 }},"pauseAutoPlayOnHover" : true, "prevNextButtons": {% if se_stts.scallop_style %}true{% else %}false{% endif %},"pageDots": false, "contain" : 1,"adaptiveHeight" : 1,"dragThreshold" : 5,"percentPosition": 1 }'>
+               {%- for block in section.blocks -%}{%- assign bk_stts = block.settings -%}
+                  {%- capture cap_date %}{% assign se_dayx = bk_stts.dayx %}<span data-refresh-owl data-countdown-t4s data-loop="{% if se_dayx > 0 %}true{% else %}false{% endif %}" data-date="{{ bk_stts.countdown }}" data-dayl="{{ se_dayx }}">%D {{ bk_stts.txt_day }} %H:%M:%S</span>{% endcapture -%}
+
+                  <div id="b_{{ block.id }}" {{ block.shopify_attributes }} data-select-flickity class="t4s-col-item t4s-announcement-bar__item t4s-pr t4s-oh t4s-rte{% unless block.settings.adding_border %}--list{% endunless %}">
+                  {%- if bk_stts.link != blank -%}<a href="{{ bk_stts.link }}" aria-label="{{ label }}" class="t4s-full-width-link t4s-a"></a>{%- endif -%}
+                  {{- block.settings.content | replace: '[countdown]', cap_date | replace: '[icon_arrow]', cap_arrow | replace: '[icon_package]', cap_icon_package | replace: '[icon_truck]', cap_icon_truck | replace: '[icon_gift]', cap_icon_gift | replace: '[icon_heart]', cap_icon_heart -}}
+                  </div>
+               {%- endfor -%}
+             </div>
+            {%- endif -%}
+
+          {{- cap_btn | replace: 't4s-op-0', 't4s-z-100' | remove: ' t4s-d-none t4s-d-md-block' -}}
+       </div>
+    </div>
+  </div>
+  {%- if se_stts.scallop_style -%}
+  <div class="t4s-ab-scallop" aria-hidden="true"><svg viewBox="0 0 1056 4" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M1035.025 1.916c-.721-.81-1.865-1.275-2.954-1.275a3.807 3.807 0 0 0-2.846 1.275C1027.889 3.249 1025.893 4 1024 4c-1.896.008-3.642-.745-4.975-2.084-.721-.81-1.865-1.275-2.954-1.275a3.807 3.807 0 0 0-2.846 1.275C1011.889 3.249 1009.893 4 1008 4c-1.896.008-3.642-.745-4.975-2.084-.721-.81-1.865-1.275-2.954-1.275a3.807 3.807 0 0 0-2.846 1.275C995.889 3.249 993.893 4 992 4c-1.896.008-3.642-.745-4.975-2.084-.721-.81-1.865-1.275-2.954-1.275a3.807 3.807 0 0 0-2.846 1.275C979.889 3.249 977.893 4 976 4c-1.896.008-3.642-.745-4.975-2.084-.721-.81-1.865-1.275-2.954-1.275a3.807 3.807 0 0 0-2.846 1.275C963.889 3.249 961.893 4 960 4c-1.896.008-3.642-.745-4.975-2.084-.721-.81-1.865-1.275-2.954-1.275a3.807 3.807 0 0 0-2.846 1.275C947.889 3.249 945.893 4 944 4c-1.896.008-3.642-.745-4.975-2.084-.721-.81-1.865-1.275-2.954-1.275a3.807 3.807 0 0 0-2.846 1.275C931.889 3.249 929.893 4 928 4c-1.896.008-3.642-.745-4.975-2.084-.721-.81-1.865-1.275-2.954-1.275a3.807 3.807 0 0 0-2.846 1.275C915.889 3.249 913.893 4 912 4c-1.896.008-3.642-.745-4.975-2.084-.721-.81-1.865-1.275-2.954-1.275a3.807 3.807 0 0 0-2.846 1.275C899.889 3.249 897.893 4 896 4c-1.896.008-3.642-.745-4.975-2.084-.721-.81-1.865-1.275-2.954-1.275a3.807 3.807 0 0 0-2.846 1.275C883.889 3.249 881.893 4 880 4c-1.896.008-3.642-.745-4.975-2.084-.721-.81-1.865-1.275-2.954-1.275a3.807 3.807 0 0 0-2.846 1.275C867.889 3.249 865.893 4 864 4c-1.896.008-3.642-.745-4.975-2.084-.721-.81-1.865-1.275-2.954-1.275a3.807 3.807 0 0 0-2.846 1.275C851.889 3.249 849.893 4 848 4c-1.896.008-3.642-.745-4.975-2.084-.721-.81-1.865-1.275-2.954-1.275a3.807 3.807 0 0 0-2.846 1.275C835.889 3.249 833.893 4 832 4c-1.896.008-3.642-.745-4.975-2.084-.721-.81-1.865-1.275-2.954-1.275a3.807 3.807 0 0 0-2.846 1.275C819.889 3.249 817.893 4 816 4c-1.896.008-3.642-.745-4.975-2.084-.721-.81-1.865-1.275-2.954-1.275a3.807 3.807 0 0 0-2.846 1.275C803.889 3.249 801.893 4 800 4c-1.896.008-3.642-.745-4.975-2.084-.721-.81-1.865-1.275-2.954-1.275a3.807 3.807 0 0 0-2.846 1.275C787.889 3.249 785.893 4 784 4c-1.896.008-3.642-.745-4.975-2.084-.721-.81-1.865-1.275-2.954-1.275a3.807 3.807 0 0 0-2.846 1.275C771.889 3.249 769.893 4 768 4c-1.896.008-3.642-.745-4.975-2.084-.721-.81-1.865-1.275-2.954-1.275a3.807 3.807 0 0 0-2.846 1.275C755.889 3.249 753.893 4 752 4c-1.896.008-3.642-.745-4.975-2.084-.721-.81-1.865-1.275-2.954-1.275a3.807 3.807 0 0 0-2.846 1.275C739.889 3.249 737.893 4 736 4c-1.896.008-3.642-.745-4.975-2.084-.721-.81-1.865-1.275-2.954-1.275a3.807 3.807 0 0 0-2.846 1.275C723.889 3.249 721.893 4 720 4c-1.896.008-3.642-.745-4.975-2.084-.721-.81-1.865-1.275-2.954-1.275a3.807 3.807 0 0 0-2.846 1.275C707.889 3.249 705.893 4 704 4c-1.896.008-3.642-.745-4.975-2.084-.721-.81-1.865-1.275-2.954-1.275a3.807 3.807 0 0 0-2.846 1.275C691.889 3.249 689.893 4 688 4c-1.896.008-3.642-.745-4.975-2.084-.721-.81-1.865-1.275-2.954-1.275a3.807 3.807 0 0 0-2.846 1.275C675.889 3.249 673.893 4 672 4c-1.896.008-3.642-.745-4.975-2.084-.721-.81-1.865-1.275-2.954-1.275a3.807 3.807 0 0 0-2.846 1.275C659.889 3.249 657.893 4 656 4c-1.896.008-3.642-.745-4.975-2.084-.721-.81-1.865-1.275-2.954-1.275a3.807 3.807 0 0 0-2.846 1.275C643.889 3.249 641.893 4 640 4c-1.896.008-3.642-.745-4.975-2.084-.721-.81-1.865-1.275-2.954-1.275a3.807 3.807 0 0 0-2.846 1.275C627.889 3.249 625.893 4 624 4c-1.896.008-3.642-.745-4.975-2.084-.721-.81-1.865-1.275-2.954-1.275a3.807 3.807 0 0 0-2.846 1.275C611.889 3.249 609.893 4 608 4c-1.896.008-3.642-.745-4.975-2.084-.721-.81-1.865-1.275-2.954-1.275a3.807 3.807 0 0 0-2.846 1.275C595.889 3.249 593.893 4 592 4c-1.896.008-3.642-.745-4.975-2.084-.721-.81-1.865-1.275-2.954-1.275a3.807 3.807 0 0 0-2.846 1.275C579.889 3.249 577.893 4 576 4c-1.896.008-3.642-.745-4.975-2.084-.721-.81-1.865-1.275-2.954-1.275a3.807 3.807 0 0 0-2.846 1.275C563.889 3.249 561.893 4 560 4c-1.896.008-3.642-.745-4.975-2.084-.721-.81-1.865-1.275-2.954-1.275a3.807 3.807 0 0 0-2.846 1.275C547.889 3.249 545.893 4 544 4c-1.896.008-3.642-.745-4.975-2.084-.721-.81-1.865-1.275-2.954-1.275a3.807 3.807 0 0 0-2.846 1.275C531.889 3.249 529.893 4 528 4c-1.896.008-3.642-.745-4.975-2.084-.721-.81-1.865-1.275-2.954-1.275a3.807 3.807 0 0 0-2.846 1.275C515.889 3.249 513.893 4 512 4c-1.896.008-3.642-.745-4.975-2.084-.721-.81-1.865-1.275-2.954-1.275a3.807 3.807 0 0 0-2.846 1.275C499.889 3.249 497.893 4 496 4c-1.896.008-3.642-.745-4.975-2.084-.721-.81-1.865-1.275-2.954-1.275a3.807 3.807 0 0 0-2.846 1.275C483.889 3.249 481.893 4 480 4c-1.896.008-3.642-.745-4.975-2.084-.721-.81-1.865-1.275-2.954-1.275a3.807 3.807 0 0 0-2.846 1.275C467.889 3.249 465.893 4 464 4c-1.896.008-3.642-.745-4.975-2.084-.721-.81-1.865-1.275-2.954-1.275a3.807 3.807 0 0 0-2.846 1.275C451.889 3.249 449.893 4 448 4c-1.896.008-3.642-.745-4.975-2.084-.721-.81-1.865-1.275-2.954-1.275a3.807 3.807 0 0 0-2.846 1.275C435.889 3.249 433.893 4 432 4c-1.896.008-3.642-.745-4.975-2.084-.721-.81-1.865-1.275-2.954-1.275a3.807 3.807 0 0 0-2.846 1.275C419.889 3.249 417.893 4 416 4c-1.896.008-3.642-.745-4.975-2.084-.721-.81-1.865-1.275-2.954-1.275a3.807 3.807 0 0 0-2.846 1.275C403.889 3.249 401.893 4 400 4c-1.896.008-3.642-.745-4.975-2.084-.721-.81-1.865-1.275-2.954-1.275a3.807 3.807 0 0 0-2.846 1.275C387.889 3.249 385.893 4 384 4c-1.896.008-3.642-.745-4.975-2.084-.721-.81-1.865-1.275-2.954-1.275a3.807 3.807 0 0 0-2.846 1.275C371.889 3.249 369.893 4 368 4c-1.896.008-3.642-.745-4.975-2.084-.721-.81-1.865-1.275-2.954-1.275a3.807 3.807 0 0 0-2.846 1.275C355.889 3.249 353.893 4 352 4c-1.896.008-3.642-.745-4.975-2.084-.721-.81-1.865-1.275-2.954-1.275a3.807 3.807 0 0 0-2.846 1.275C339.889 3.249 337.893 4 336 4c-1.896.008-3.642-.745-4.975-2.084-.721-.81-1.865-1.275-2.954-1.275a3.807 3.807 0 0 0-2.846 1.275C323.889 3.249 321.893 4 320 4c-1.896.008-3.642-.745-4.975-2.084-.721-.81-1.865-1.275-2.954-1.275a3.807 3.807 0 0 0-2.846 1.275C307.889 3.249 305.893 4 304 4c-1.896.008-3.642-.745-4.975-2.084-.721-.81-1.865-1.275-2.954-1.275a3.807 3.807 0 0 0-2.846 1.275C291.889 3.249 289.893 4 288 4c-1.896.008-3.642-.745-4.975-2.084-.721-.81-1.865-1.275-2.954-1.275a3.807 3.807 0 0 0-2.846 1.275C275.889 3.249 273.893 4 272 4c-1.896.008-3.642-.745-4.975-2.084-.721-.81-1.865-1.275-2.954-1.275a3.807 3.807 0 0 0-2.846 1.275C259.889 3.249 257.893 4 256 4c-1.896.008-3.642-.745-4.975-2.084-.721-.81-1.865-1.275-2.954-1.275a3.807 3.807 0 0 0-2.846 1.275C243.889 3.249 241.893 4 240 4c-1.896.008-3.642-.745-4.975-2.084-.721-.81-1.865-1.275-2.954-1.275a3.807 3.807 0 0 0-2.846 1.275C227.889 3.249 225.893 4 224 4c-1.896.008-3.642-.745-4.975-2.084-.721-.81-1.865-1.275-2.954-1.275a3.807 3.807 0 0 0-2.846 1.275C211.889 3.249 209.893 4 208 4c-1.896.008-3.642-.745-4.975-2.084-.721-.81-1.865-1.275-2.954-1.275a3.807 3.807 0 0 0-2.846 1.275C195.889 3.249 193.893 4 192 4c-1.896.008-3.642-.745-4.975-2.084-.721-.81-1.865-1.275-2.954-1.275a3.807 3.807 0 0 0-2.846 1.275C179.889 3.249 177.893 4 176 4c-1.896.008-3.642-.745-4.975-2.084-.721-.81-1.865-1.275-2.954-1.275a3.807 3.807 0 0 0-2.846 1.275C163.889 3.249 161.893 4 160 4c-1.896.008-3.642-.745-4.975-2.084-.721-.81-1.865-1.275-2.954-1.275a3.807 3.807 0 0 0-2.846 1.275C147.889 3.249 145.893 4 144 4c-1.896.008-3.642-.745-4.975-2.084-.721-.81-1.865-1.275-2.954-1.275a3.807 3.807 0 0 0-2.846 1.275C131.889 3.249 129.893 4 128 4c-1.896.008-3.642-.745-4.975-2.084-.721-.81-1.865-1.275-2.954-1.275a3.807 3.807 0 0 0-2.846 1.275C115.889 3.249 113.893 4 112 4c-1.896.008-3.642-.745-4.975-2.084-.721-.81-1.865-1.275-2.954-1.275a3.807 3.807 0 0 0-2.846 1.275C99.889 3.249 97.893 4 96 4c-1.896.008-3.642-.745-4.975-2.084C90.304 1.106 89.16.64 88.07.64a3.807 3.807 0 0 0-2.846 1.275C83.889 3.249 81.893 4 80 4c-1.896.008-3.642-.745-4.975-2.084C74.304 1.106 73.16.64 72.07.64a3.807 3.807 0 0 0-2.846 1.275C67.889 3.249 65.893 4 64 4c-1.896.008-3.642-.745-4.975-2.084C58.304 1.106 57.16.64 56.07.64a3.807 3.807 0 0 0-2.846 1.275C51.889 3.249 49.893 4 48 4c-1.896.008-3.642-.745-4.975-2.084C42.304 1.106 41.16.64 40.07.64a3.807 3.807 0 0 0-2.846 1.275C35.889 3.249 33.893 4 32 4c-1.896.008-3.642-.745-4.975-2.084C26.304 1.106 25.16.64 24.07.64a3.807 3.807 0 0 0-2.846 1.275C19.889 3.249 17.893 4 16 4c-1.896.008-3.642-.745-4.975-2.084C10.304 1.106 9.16.64 8.07.64a3.807 3.807 0 0 0-2.846 1.275C3.889 3.249 1.893 4 0 4V0h1056v4c-1.896.008-3.642-.745-4.975-2.084z"/></svg></div>
+  </div>
+  {%- endif -%}
+  <script>try { if (document.cookie.indexOf('t4s_announcement_{{ theme_name }}_{{ se_stts.version }}_nt') > -1) { document.getElementById('shopify-section-announcement-bar').setAttribute("aria-hidden", true);document.getElementsByClassName('t4s-announcement-bar')[0].setAttribute("aria-hidden", true);document.getElementsByClassName('t4s-announcement-bar')[0].classList.add('t4s-d-none'); } }catch(err) {}</script>
+{%- else -%}
+<script>try { if (window.Shopify && !Shopify.designMode) { document.getElementById('shopify-section-announcement-bar').remove() } else { document.getElementById('shopify-section-announcement-bar').setAttribute("aria-hidden", true) } }catch(err) {}</script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Announcement bar",
+  "class": "t4-section t4-section-announcement-bar t4s_bk_flickity t4s_tp_cd",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_announcement",
+      "label": "Show announcement",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Scalloped kids style"
+    },
+    {
+      "type": "checkbox",
+      "id": "scallop_style",
+      "label": "Enable scalloped style",
+      "info": "Adds a dark top strip, side arrows and a scalloped bottom edge.",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "top_strip_enabled",
+      "label": "Show dark top strip",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "top_strip_bg",
+      "label": "Top strip color",
+      "default": "#111111"
+    },
+    {
+      "type": "range",
+      "id": "top_strip_height",
+      "label": "Top strip height",
+      "min": 0,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 6
+    },
+    {
+      "type": "range",
+      "id": "scallop_height",
+      "label": "Scallop height",
+      "min": 4,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "paragraph",
+      "content": "In each block's content, insert these shortcodes to add an icon: [icon_package], [icon_truck], [icon_gift], [icon_heart]."
+    },
+    {
+      "type": "select",
+      "id": "effect",
+      "label": "Effect slider",
+      "default": "1",
+      "options": [
+        {
+          "value": "1",
+          "label": "Fade"
+        },
+        {
+          "value": "0",
+          "label": "Slide"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "au_time",
+      "min": 0,
+      "max": 30,
+      "step": 0.5,
+      "label": "Autoplay speed in second.",
+      "info": "Set is '0' to disable autoplay.",
+      "unit": "sec",
+      "default": 3.5
+    },
+    {
+      "type": "range",
+      "id": "height",
+      "label": "Min height",
+      "default": 44,
+      "min": 20,
+      "max": 120,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "fontsize",
+      "label": "Font size",
+      "default": 14,
+      "min": 12,
+      "max": 18,
+      "step": 0.5,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "cl",
+      "label": "Text color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "color",
+      "id": "bg",
+      "label": "Background color",
+      "default": "#c7e0d3"
+    },
+    {
+      "type": "range",
+      "id": "bg_op",
+      "label": "Background opacity",
+      "default": 100,
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%"
+    },
+    {
+      "type": "select",
+      "id": "close",
+      "label": "Button close",
+      "default": "0",
+      "options": [
+        {
+          "value": "0",
+          "label": "Disable"
+        },
+        {
+          "value": "1",
+          "label": "Icon & text"
+        },
+        {
+          "value": "2",
+          "label": "Only icon"
+        },
+        {
+          "value": "3",
+          "label": "Only text"
+        }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "cl_btn",
+      "label": "Button close color",
+      "default": "#fff"
+    },
+    {
+      "type": "radio",
+      "id": "version",
+      "label": "Announcement version",
+      "info": "If you apply any changes to your announcement settings or content you might want to force the announcement to all visitor who already close it again. In this case, you just need to change the announcement version.",
+      "default": "1",
+      "options": [
+        {
+          "value": "1",
+          "label": "1"
+        },
+        {
+          "value": "2",
+          "label": "2"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "date",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "day",
+      "label": "Header banner expires",
+      "info": "You will be able to specify when to expire the cookie. Once you click the \"CLOSE\" button",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "announcement",
+      "name": "Announcement",
+      "limit": 10,
+      "settings": [
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Banner link"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Banner content",
+          "default": "<p>[icon_package] Delivery in 2-4 business days</p>",
+          "info": "Place here text you want to see in the header banner. Shortcodes: [countdown], [icon_arrow], [icon_package], [icon_truck], [icon_gift], [icon_heart]"
+        },
+        {
+          "type": "checkbox",
+          "id": "adding_border",
+          "label": "Adding a bottom border on link",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "countdown",
+          "label": "Date countdown",
+          "default": "2023/12/26",
+          "info": "Use shortocdes: [countdown]. Countdown to the end sale date will be shown.( 2023/12/26 or 2023/12/26 20:00:30 )"
+        },
+        {
+          "type": "text",
+          "id": "txt_day",
+          "label": "Text day countdown",
+          "default": "days"
+        },
+        {
+          "type": "range",
+          "id": "dayx",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "label": "Reset countdown every x days from an initial date.",
+          "info": "Set is '0' to disable reset countdown.",
+          "unit": "day",
+          "default": 0
+        }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      {
+        "type": "announcement"
+      },
+      {
+        "type": "announcement"
+      },
+      {
+        "type": "announcement"
+      }
+    ]
+  }
+}
+{% endschema %}
