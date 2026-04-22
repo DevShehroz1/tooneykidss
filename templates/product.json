@@ -85,7 +85,7 @@
             "show_qty": true,
             "enable_wishlist": false,
             "enable_compare": false,
-            "btn_atc_full": false,
+            "btn_atc_full": true,
             "pr_btn_round": 10,
             "ani": "t4s-ani-shake",
             "time": 6,
@@ -111,58 +111,6 @@
             "advance_pr_list": []
           }
         },
-        "inventory_qty_6YW4pH": {
-          "type": "inventory_qty",
-          "settings": {
-            "icon": "2",
-            "icon_name": "hourglass-half",
-            "ani": "none",
-            "stock": "3",
-            "qty": 10,
-            "total_items": 100,
-            "stock_from": 5,
-            "stock_to": 20,
-            "al": "center",
-            "mess": "HURRY! ONLY [stock_number] LEFT IN STOCK.",
-            "size": 16,
-            "progress": true,
-            "wbar": 100,
-            "stock_bg_process": "#f76b6a",
-            "bgten": "#ec0101",
-            "stock_bg": "#ffe8e8"
-          }
-        },
-        "complimentary_products_qxXeeq": {
-          "type": "complimentary_products",
-          "disabled": true,
-          "settings": {
-            "text": "Pairs well with"
-          }
-        },
-        "custom_liquid_PzMmt4": {
-          "type": "custom_liquid",
-          "settings": {
-            "custom_liquid": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Feature Banner</title>\n  <style>\n    .feature-banner {\n      width: 100%;\n      background-color: #ffffff;\n      padding: 0 20px;\n      display: flex;\n      justify-content: center;\n      align-items: center;\n    }\n\n    .feature-banner__container {\n      max-width: 1200px;\n      width: 100%;\n      display: flex;\n      justify-content: space-around;\n      align-items: flex-start;\n      gap: 20px;\n      flex-wrap: nowrap;\n    }\n\n    .feature-banner__item {\n      display: flex;\n      flex-direction: column;\n      align-items: center;\n      text-align: center;\n      flex: 1;\n      min-width: 0;\n    }\n\n    .feature-banner__icon {\n      margin-bottom: 16px;\n      display: flex;\n      justify-content: center;\n      align-items: flex-end;\n      height: 40px;\n      width: 100%;\n    }\n\n    .feature-banner__icon svg,\n    .feature-banner__icon img {\n      width: 40px;\n      height: 40px;\n      display: block;\n      object-fit: contain;\n    }\n\n    .feature-banner__text {\n      color: #000000;\n      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;\n    }\n\n    .feature-banner__text {\n      width: 100%;\n    }\n\n    .feature-banner__text b {\n      font-weight: 700;\n      font-size: 14px;\n      line-height: 1.4;\n      text-transform: uppercase;\n      letter-spacing: 0.5px;\n      margin: 0;\n      min-height: 20px;\n      display: flex;\n      align-items: center;\n      justify-content: center;\n    }\n\n    .feature-banner__text span:not(b) {\n      font-weight: 400;\n      font-size: 12px;\n      line-height: 1.5;\n      display: block;\n      margin: 0;\n      margin-top: 4px;\n    }\n\n    @media screen and (max-width: 768px) {\n      .feature-banner {\n        padding: 0 10px;\n      }\n\n      .feature-banner__container {\n        gap: 10px;\n      }\n\n      .feature-banner__text b {\n        font-size: 12px;\n        min-height: 18px;\n      }\n\n      .feature-banner__text span:not(b) {\n        font-size: 10px;\n      }\n\n      .feature-banner__icon {\n        height: 32px;\n      }\n\n      .feature-banner__icon svg,\n      .feature-banner__icon img {\n        width: 32px;\n        height: 32px;\n      }\n    }\n  </style>\n</head>\n<body>\n  <div class=\"feature-banner\">\n    <div class=\"feature-banner__container\">\n      <!-- FREE SHIPPING -->\n      <div class=\"feature-banner__item\">\n        <div class=\"feature-banner__icon\">\n          <svg width=\"40\" height=\"32\" viewBox=\"0 0 40 32\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n            <path d=\"m38 25 .816-.272a1 1 0 0 0 .684-.949v-4.532a1 1 0 0 0-.115-.466l-4.604-8.747a1 1 0 0 0-.885-.534H26.5v13A2.5 2.5 0 0 0 29 25m8.921-9 .052 1.974a1 1 0 0 1-1 1.026H30a1 1 0 0 1-1-1v-4.5a1 1 0 0 1 1-1h6\" stroke=\"#000\" stroke-width=\"1\" fill=\"none\"/>\n            <path d=\"M12 6.5h10.5m-8.5 3h8m-15.5-3h2M0 31h40\" stroke=\"#000\" stroke-width=\"1\" stroke-linecap=\"round\" fill=\"none\"/>\n            <path d=\"M14 25h9.5a3 3 0 0 0 3-3V4a3 3 0 0 0-3-3h-20a3 3 0 0 0-3 3v18a3 3 0 0 0 3 3H5\" stroke=\"#000\" stroke-width=\"1\" fill=\"none\"/>\n            <circle cx=\"9.5\" cy=\"26\" r=\"4.5\" stroke=\"#000\" stroke-width=\"1\" fill=\"none\"/>\n            <circle cx=\"33.5\" cy=\"26\" r=\"4.5\" stroke=\"#000\" stroke-width=\"1\" fill=\"none\"/>\n            <circle cx=\"9.5\" cy=\"26\" r=\"1\" fill=\"#000\"/>\n            <circle cx=\"33.5\" cy=\"26\" r=\"1\" fill=\"#000\"/>\n            <path d=\"M.5 18H2a2.5 2.5 0 0 1 0 5H.5\" stroke=\"#000\" stroke-width=\"1\" fill=\"none\"/>\n          </svg>\n        </div>\n        <div class=\"feature-banner__text\">\n          <b>FREE SHIPPING</b>\n          <span>On orders over Rs. 2999</span>\n        </div>\n      </div>\n\n      <!-- EXPORT QUALITY -->\n      <div class=\"feature-banner__item\">\n        <div class=\"feature-banner__icon\">\n          <img src=\"https://cdn.shopify.com/s/files/1/0555/2036/2579/files/import.png?v=1765482121\" alt=\"Export Quality\" />\n        </div>\n        <div class=\"feature-banner__text\">\n          <b>EXPORT QUALITY</b>\n          <span>Premium Quality Products</span>\n        </div>\n      </div>\n\n      <!-- RETURNS & EXCHANGE -->\n      <div class=\"feature-banner__item\">\n        <div class=\"feature-banner__icon\">\n          <img src=\"https://cdn.shopify.com/s/files/1/0555/2036/2579/files/return-box.png?v=1765482121\" alt=\"Returns & Exchange\" />\n        </div>\n        <div class=\"feature-banner__text\">\n          <b>RETURNS & EXCHANGE</b>\n          <span>15 Day Return & Money Back</span>\n        </div>\n      </div>\n    </div>\n  </div>\n</body>\n</html>"
-          }
-        },
-        "order_Kptzyn": {
-          "type": "order",
-          "settings": {
-            "hide_pre": true,
-            "icon": "2",
-            "icon_name": "las la-truck",
-            "ani": "swing is--infinite",
-            "txt": "Order in the next [hour] to get it between [date_start] and [date_end]",
-            "ds": 0,
-            "de": 4,
-            "mode": "1",
-            "cut_day": "SAT,SUN",
-            "frm_day": "t44, t45 t46",
-            "time": "16:00:00",
-            "hr": "hours",
-            "min": "minutes"
-          }
-        },
         "description": {
           "type": "description",
           "disabled": true,
@@ -174,10 +122,18 @@
             "readm_txt": "Read more"
           }
         },
-        "custom_liquid_xYDBqH": {
-          "type": "custom_liquid",
+        "delivery_info_fCTLij": {
+          "type": "delivery_info",
           "settings": {
-            "custom_liquid": "{% if product.metafields.custom.pair_product.value %}\n  {% assign paired_product = product.metafields.custom.pair_product.value %}\n\n  {% assign total_price = product.price | plus: paired_product.price %}\n  {% assign total_compare = 0 %}\n\n  {% if product.compare_at_price > product.price %}\n    {% assign total_compare = product.compare_at_price %}\n  {% endif %}\n  {% if paired_product.compare_at_price > paired_product.price %}\n    {% assign total_compare = total_compare | plus: paired_product.compare_at_price %}\n  {% endif %}\n\n  <div class=\"pair-section\">\n    <h2 class=\"pair-heading\">Pair it with</h2>\n\n    <div class=\"pair-row\">\n      <!-- Current Product -->\n      <div class=\"pair-item\">\n        <div class=\"pair-image\">\n          <img\n            src=\"{{ product.featured_image | image_url: width: 800 }}\"\n            alt=\"{{ product.title }}\">\n        </div>\n        <p class=\"pair-title\">{{ product.title }}</p>\n      </div>\n\n      <!-- Plus -->\n      <div class=\"pair-plus\">+</div>\n\n      <!-- Paired Product -->\n      <div class=\"pair-item\">\n        <a href=\"{{ paired_product.url }}\" class=\"pair-link\">\n          <div class=\"pair-image\">\n            <img\n              src=\"{{ paired_product.featured_image | image_url: width: 800 }}\"\n              alt=\"{{ paired_product.title }}\">\n          </div>\n          <p class=\"pair-title\">{{ paired_product.title }}</p>\n        </a>\n      </div>\n    </div>\n\n    <!-- CTA -->\n    <div class=\"pair-cta\">\n      <div class=\"pair-total\">\n        <span class=\"total-label\">Total price:</span>\n        {% if total_compare > total_price %}\n          <span class=\"total-compare\">{{ total_compare | money }}</span>\n        {% endif %}\n        <span class=\"total-sale\">{{ total_price | money }}</span>\n      </div>\n\n      <button\n        type=\"button\"\n        class=\"pair-btn js-pair-add\"\n        data-main-variant=\"{{ product.variants.first.id }}\"\n        data-pair-variant=\"{{ paired_product.variants.first.id }}\">\n        ADD SELECTED TO CART\n      </button>\n    </div>\n  </div>\n\n  <style>\n    .pair-section {\n      text-align: center;\n      padding: 20px 0 24px;\n    }\n\n    .pair-heading {\n      font-size: 26px;\n      font-weight: 700;\n      margin-bottom: 18px;\n    }\n\n    .pair-row {\n      display: flex;\n      justify-content: center;\n      align-items: center;\n      gap: 22px;\n    }\n\n    .pair-item {\n      width: 240px;\n    }\n\n    .pair-image {\n      width: 240px;\n      height: 240px;\n      border-radius: 10px;\n      overflow: hidden;\n      background: #f5f5f5;\n    }\n\n    .pair-image img {\n      width: 100%;\n      height: 100%;\n      object-fit: cover;\n      display: block;\n    }\n\n    .pair-title {\n      margin-top: 6px;\n      font-weight: 600;\n      font-size: 14px;\n      line-height: 1.35;\n      color: #000;\n    }\n\n    .pair-plus {\n      font-size: 26px;\n      color: #8b5e3c;\n    }\n\n    .pair-cta {\n      margin-top: 6px;\n    }\n\n    .pair-total {\n      margin: 0 0 8px;\n      font-size: 15px;\n    }\n\n    .total-label {\n      margin-right: 6px;\n    }\n\n    .total-compare {\n      margin-right: 6px;\n      color: #777;\n      text-decoration: line-through;\n    }\n\n    .total-sale {\n      color: #d32f2f;\n      font-weight: 700;\n    }\n\n    .pair-btn {\n      background: #000;\n      color: #fff;\n      border: none;\n      padding: 12px 26px;\n      border-radius: 30px;\n      font-weight: 600;\n      cursor: pointer;\n    }\n\n    .pair-btn:hover {\n      opacity: 0.9;\n    }\n\n    .pair-link,\n    .pair-link:hover {\n      text-decoration: none !important;\n      border: none !important;\n      color: inherit;\n      display: block;\n    }\n\n    .pair-link::before,\n    .pair-link::after {\n      display: none !important;\n      content: none !important;\n    }\n\n    @media (max-width: 768px) {\n      .pair-row {\n        gap: 14px;\n      }\n\n      .pair-item {\n        width: 44%;\n      }\n\n      .pair-image {\n        width: 100%;\n        height: auto;\n        aspect-ratio: 1 / 1;\n      }\n    }\n  </style>\n\n  <script>\n    document.addEventListener('DOMContentLoaded', function () {\n      const btn = document.querySelector('.js-pair-add');\n      if (!btn) return;\n\n      btn.addEventListener('click', function (e) {\n        e.preventDefault();\n        e.stopPropagation();\n\n        const mainVariant = btn.dataset.mainVariant;\n        const pairVariant = btn.dataset.pairVariant;\n\n        fetch('/cart/add.js', {\n          method: 'POST',\n          headers: {\n            'Content-Type': 'application/json',\n            'Accept': 'application/json'\n          },\n          body: JSON.stringify({\n            items: [\n              { id: mainVariant, quantity: 1 },\n              { id: pairVariant, quantity: 1 }\n            ]\n          })\n        })\n        .then(() => {\n          window.location.href = '/cart';\n        })\n        .catch(err => console.error('Add to cart error:', err));\n      });\n    });\n  </script>\n{% endif %}"
+            "heading": "Delivery",
+            "delivery_line": "Get it in",
+            "badge_text": "2-3 days",
+            "delivery_line2": "Usually ships within a day",
+            "delivery_subtext": "Select size and enter pincode for accurate delivery date",
+            "item_1": "7 Days Return",
+            "item_2": "7 Days Exchange",
+            "item_3": "Cash On Delivery",
+            "item_4": ""
           }
         },
         "95d4f334-8ea7-4cd2-b609-2373b1e848b8": {
@@ -201,19 +157,15 @@
         "image_swatches_4riAJm",
         "price_review",
         "form",
-        "inventory_qty_6YW4pH",
-        "complimentary_products_qxXeeq",
-        "custom_liquid_PzMmt4",
-        "order_Kptzyn",
         "description",
-        "custom_liquid_xYDBqH",
+        "delivery_info_fCTLij",
         "95d4f334-8ea7-4cd2-b609-2373b1e848b8",
         "tab_html_BMEgt4"
       ],
       "settings": {
         "pr_layout": "default",
         "enable_sticky_info": true,
-        "media_layout": "thumbnails_bottom",
+        "media_layout": "combined_grid",
         "media_size": "medium",
         "thumb_lr_size": "medium",
         "image_ratio": "rationt",
