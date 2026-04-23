@@ -1398,8 +1398,8 @@
           "mb_nav-1": {
             "type": "menu",
             "settings": {
-              "title": "New Arrivals",
-              "url": "",
+              "title": "Summer Collection",
+              "url": "shopify://collections/summer-collection",
               "open_link": "_self",
               "menu": "",
               "lb": "",
@@ -1424,6 +1424,7 @@
           },
           "menu_MkLhEB": {
             "type": "menu",
+            "disabled": true,
             "settings": {
               "title": "Clearance",
               "url": "shopify://collections/sale",
