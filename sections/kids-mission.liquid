@@ -13,7 +13,7 @@
     pointer-events: none;
   }
   #kmiss-{{ section.id }} .kmiss-wave svg { width: 100%; height: 100%; display: block; }
-  #kmiss-{{ section.id }} .kmiss-wave--top { margin-bottom: {{ section.settings.wave_gap }}px; }
+  #kmiss-{{ section.id }} .kmiss-wave--top { margin-bottom: calc({{ section.settings.wave_gap }}px - 2px); }
   #kmiss-{{ section.id }} .kmiss-wave--bottom { transform: scaleY(-1); margin-top: {{ section.settings.wave_gap }}px; }
   #kmiss-{{ section.id }} .kmiss-body {
     background: {{ section.settings.bg }};
