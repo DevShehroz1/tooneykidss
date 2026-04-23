@@ -460,7 +460,7 @@
             "type": "announcement",
             "settings": {
               "link": "",
-              "content": "<p>Free Shipping on order Above 2999</p>",
+              "content": "<p>NATIONWIDE CASH ON DELIVERY </p>",
               "adding_border": false,
               "countdown": "2023/12/26",
               "txt_day": "days",
@@ -471,7 +471,7 @@
             "type": "announcement",
             "settings": {
               "link": "",
-              "content": "<p><strong>15-Day Money-Back Guarantee</strong></p>",
+              "content": "<p>⚡ FREE SHIPPING ON ALL PREPAID ORDERS <a href=\"/collections/all\">⚡️ </a></p>",
               "adding_border": false,
               "countdown": "2023/12/26",
               "txt_day": "days",
@@ -482,7 +482,7 @@
             "type": "announcement",
             "settings": {
               "link": "",
-              "content": "<p>Use code <strong>PREPAID10</strong> for <strong>10% off</strong>.</p>",
+              "content": "<p>FAST, HASSLE-FREE DELIVERY, PAY ONLINE VIA BANK DEPOSIT.</p>",
               "adding_border": false,
               "countdown": "2023/12/26",
               "txt_day": "days",
