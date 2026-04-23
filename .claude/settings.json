@@ -6,9 +6,9 @@
         "hooks": [
           {
             "type": "command",
-            "command": "jq -r '.tool_input.file_path // .tool_response.filePath' | { read -r f; rel=\"${f#/Users/xpagency/Desktop/tooney-kids-theme/}\"; cd /Users/xpagency/Desktop/tooney-kids-theme && shopify theme push --only \"$rel\"; } 2>/dev/null || true",
+            "command": "jq -r '.tool_input.file_path // .tool_response.filePath' | { read -r f; rel=\"${f#/Users/xpagency/Desktop/tooney-kids-theme/}\"; cd /Users/xpagency/Desktop/tooney-kids-theme && git checkout -B claude-changes 2>/dev/null && git add \"$rel\" && git commit -m \"Update $rel\" 2>/dev/null && git push origin claude-changes 2>/dev/null && gh pr create --title \"Claude changes\" --body \"Automated changes by Claude — please review and merge.\" --base main --head claude-changes 2>/dev/null || true; } || true",
             "timeout": 60,
-            "statusMessage": "Pushing to Shopify..."
+            "statusMessage": "Committing and raising PR..."
           }
         ]
       }
