@@ -78,14 +78,14 @@
           "type": "size_delivery_ask",
           "settings": {
             "size_chart": "3",
-            "pos_sizeg": "1",
+            "pos_sizeg": "2",
             "sc_type": "1",
             "page": "size-chart",
             "size_ck": "",
             "delivery": false,
             "page_dr": "",
             "ask": false,
-            "phone": true
+            "phone": false
           }
         },
         "form": {
