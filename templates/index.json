@@ -340,6 +340,7 @@
         "collection_eg6QUd",
         "collection_UUran3"
       ],
+      "disabled": true,
       "name": "Shop by collection",
       "settings": {
         "title": "Shop by Collection",
@@ -374,7 +375,7 @@
       "settings": {
         "design_heading": "1",
         "heading_align": "t4s-text-center",
-        "top_heading": "Best Sellers",
+        "top_heading": "Summer Collection",
         "icon_heading": "las la-gem",
         "top_subheading": "",
         "tophead_mb": 30,

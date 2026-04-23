@@ -615,11 +615,38 @@
               "lb_cl": ""
             }
           },
+          "base_YbaqzL": {
+            "type": "base",
+            "settings": {
+              "title": "Summer Collection",
+              "url": "shopify://collections/summer-collection",
+              "open_link": "_self",
+              "icon": "",
+              "cus_cl": false,
+              "cl": "#ec0101",
+              "lb": "",
+              "lb_cl": ""
+            }
+          },
+          "base_wjrMJr": {
+            "type": "base",
+            "settings": {
+              "title": "Contact Us",
+              "url": "shopify://pages/contact",
+              "open_link": "_self",
+              "icon": "",
+              "cus_cl": false,
+              "cl": "#ec0101",
+              "lb": "",
+              "lb_cl": ""
+            }
+          },
           "drop_kN77xX": {
             "type": "drop",
+            "disabled": true,
             "settings": {
-              "title": "New Arrivals",
-              "url": "shopify://collections/new-arrivals-1",
+              "title": "Summer Collection",
+              "url": "shopify://collections/summer-collection",
               "open_link": "_self",
               "menu": "",
               "icon": "",
@@ -634,6 +661,7 @@
           },
           "drop_kjJA3D": {
             "type": "drop",
+            "disabled": true,
             "settings": {
               "title": "Kids",
               "url": "shopify://collections/kids",
@@ -669,6 +697,7 @@
           },
           "base_znmDgY": {
             "type": "base",
+            "disabled": true,
             "settings": {
               "title": "Clearance",
               "url": "shopify://collections/sale",
@@ -683,6 +712,8 @@
         },
         "block_order": [
           "base_3eCR7y",
+          "base_YbaqzL",
+          "base_wjrMJr",
           "drop_kN77xX",
           "drop_kjJA3D",
           "drop_GRfdG8",
