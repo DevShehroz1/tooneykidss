@@ -1423,13 +1423,12 @@
           },
           "menu_MkLhEB": {
             "type": "menu",
-            "disabled": true,
             "settings": {
-              "title": "Clearance",
-              "url": "shopify://collections/sale",
+              "title": "Tooney Teez",
+              "url": "https://tooneyteez.com/",
               "open_link": "_self",
               "menu": "",
-              "lb": "Sale",
+              "lb": "For Adults, Visit",
               "lb_cl": "#ec0101",
               "icons_op": "2",
               "icon": ""
