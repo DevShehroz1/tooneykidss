@@ -697,15 +697,14 @@
           },
           "base_znmDgY": {
             "type": "base",
-            "disabled": true,
             "settings": {
-              "title": "Clearance",
+              "title": "Tooney Teez",
               "url": "shopify://collections/sale",
               "open_link": "_self",
               "icon": "",
               "cus_cl": true,
               "cl": "#ec0101",
-              "lb": "Sale",
+              "lb": "For Adults, visit",
               "lb_cl": "#ec0101"
             }
           }
