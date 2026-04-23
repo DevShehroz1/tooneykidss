@@ -74,6 +74,20 @@
             "price_sale_color": "#ec0101"
           }
         },
+        "size_delivery_ask_RDMfVn": {
+          "type": "size_delivery_ask",
+          "settings": {
+            "size_chart": "3",
+            "pos_sizeg": "1",
+            "sc_type": "1",
+            "page": "size-chart",
+            "size_ck": "",
+            "delivery": false,
+            "page_dr": "",
+            "ask": false,
+            "phone": true
+          }
+        },
         "form": {
           "type": "form",
           "settings": {
@@ -156,6 +170,7 @@
         "sold_xjYG46",
         "image_swatches_4riAJm",
         "price_review",
+        "size_delivery_ask_RDMfVn",
         "form",
         "description",
         "delivery_info_fCTLij",
