@@ -699,7 +699,7 @@
             "type": "base",
             "settings": {
               "title": "Tooney Teez",
-              "url": "shopify://collections/sale",
+              "url": "https://tooneyteez.com/",
               "open_link": "_self",
               "icon": "",
               "cus_cl": true,
