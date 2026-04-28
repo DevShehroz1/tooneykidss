@@ -705,7 +705,7 @@
               "cus_cl": true,
               "cl": "#ec0101",
               "lb": "For Adults, visit",
-              "lb_cl": "#fff"
+              "lb_cl": "#ffffff"
             }
           }
         },
@@ -2491,6 +2491,13 @@
         }
       }
     },
-    "content_for_index": []
+    "content_for_index": [],
+    "blocks": {
+      "10605107893285769442": {
+        "type": "shopify://apps/amp-bundles/blocks/amp-bundles-embed/7161efe5-6fe7-4f63-bef9-72179702263a",
+        "disabled": false,
+        "settings": {}
+      }
+    }
   }
 }
