@@ -1385,7 +1385,7 @@
             "type": "menu",
             "settings": {
               "title": "Home",
-              "url": "https://factoryx.pk/",
+              "url": "/",
               "open_link": "_self",
               "menu": "",
               "lb": "",
