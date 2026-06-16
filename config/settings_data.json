@@ -1421,6 +1421,19 @@
               "icon": ""
             }
           },
+          "menu_CLib6f": {
+            "type": "menu",
+            "settings": {
+              "title": "Winter Collection",
+              "url": "shopify://collections/winter-collection",
+              "open_link": "_self",
+              "menu": "",
+              "lb": "",
+              "lb_cl": "",
+              "icons_op": "2",
+              "icon": ""
+            }
+          },
           "mb_nav-3": {
             "type": "menu",
             "disabled": true,
@@ -1460,6 +1473,7 @@
           "mb_nav-5",
           "mb_nav-0",
           "mb_nav-1",
+          "menu_CLib6f",
           "mb_nav-3",
           "menu_MkLhEB",
           "mb_nav-7"
