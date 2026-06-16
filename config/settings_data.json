@@ -628,6 +628,19 @@
               "lb_cl": ""
             }
           },
+          "base_QFbi4Q": {
+            "type": "base",
+            "settings": {
+              "title": "Winter Collection",
+              "url": "shopify://collections/winter-collection",
+              "open_link": "_self",
+              "icon": "",
+              "cus_cl": false,
+              "cl": "#ec0101",
+              "lb": "",
+              "lb_cl": ""
+            }
+          },
           "base_wjrMJr": {
             "type": "base",
             "settings": {
@@ -712,6 +725,7 @@
         "block_order": [
           "base_3eCR7y",
           "base_YbaqzL",
+          "base_QFbi4Q",
           "base_wjrMJr",
           "drop_kN77xX",
           "drop_kjJA3D",
