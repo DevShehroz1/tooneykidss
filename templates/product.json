@@ -48,7 +48,6 @@
         },
         "image_swatches_4riAJm": {
           "type": "image_swatches",
-          "disabled": true,
           "settings": {
             "title": "Color:",
             "title_size": 18,
