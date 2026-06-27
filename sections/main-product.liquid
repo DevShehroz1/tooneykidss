@@ -839,10 +839,20 @@ endif -%}
                     {%- endif -%}
                     <div class="t4s-image-swatches__grid" style="--swatch-gap:{{ bk_stts.swatch_gap }}px;--swatch-columns:{{ bk_stts.swatch_columns }};">
                       {%- for swatch in image_swatches -%}
-                        {%- assign swatch_product = swatch.product.value -%}
+                        {%- comment -%}
+                          Accepts either a List of Products (simple setup) or a List of "Color Swatch" metaobjects
+                          (legacy). For a product entry, `swatch.product` is nil and `swatch.title` works directly.
+                        {%- endcomment -%}
+                        {%- if swatch.product -%}
+                          {%- assign swatch_product = swatch.product.value -%}
+                          {%- assign swatch_image_obj = swatch.swatch_image.value -%}
+                          {%- assign display_name = swatch.display_name.value | default: swatch.swatch_color_name.value | default: swatch_product.title -%}
+                        {%- else -%}
+                          {%- assign swatch_product = swatch -%}
+                          {%- assign swatch_image_obj = blank -%}
+                          {%- assign display_name = swatch_product.title -%}
+                        {%- endif -%}
                         {%- if swatch_product == blank -%}{%- continue -%}{% endif -%}
-                        {%- assign swatch_image_obj = swatch.swatch_image.value -%}
-                        {%- assign display_name = swatch.display_name.value | default: swatch.swatch_color_name.value | default: swatch_product.title -%}
                         {%- assign current_swatch = false -%}
                         {%- if swatch_product.id == product.id -%}
                           {%- assign current_swatch = true -%}
