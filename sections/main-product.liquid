@@ -884,7 +884,7 @@ endif -%}
                               <div class="t4s-image-swatch__placeholder">{{ 'product-1' | placeholder_svg_tag: 't4s-placeholder-svg' }}</div>
                             {%- endif -%}
                           </div>
-                          <div class="t4s-image-swatch__name">{{ display_name }}</div>
+                          <div class="t4s-image-swatch__name">{{ display_name | split: ' ' | slice: 0, 2 | join: ' ' }}</div>
                         </a>
                       {%- endfor -%}
                     </div>
@@ -969,6 +969,9 @@ endif -%}
   color: inherit;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   background: #fff;
+  border-radius: 5px;
+  max-width: 90px;
+  justify-self: start;
 }
 
 .t4s-image-swatch__item:hover {
@@ -988,6 +991,7 @@ endif -%}
   right: 0;
   bottom: 0;
   border: 2px solid #000;
+  border-radius: 5px;
   z-index: 1;
   pointer-events: none;
 }
@@ -995,12 +999,15 @@ endif -%}
 .t4s-image-swatch__image-wrapper {
   position: relative;
   width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
   background: #fff;
+  border-radius: 5px;
 }
 
 .t4s-image-swatch__image {
   width: 100%;
-  height: auto;
+  height: 100%;
   display: block;
   object-fit: contain;
 }
