@@ -1,6 +1,7 @@
 <!-- sections/product-recommendation.liquid -->
 {%- for i in (1..1) %}{% unless section.settings.show %}{% break %}{% endunless -%}
 
+{%- capture file_style -%}
 {{ 'section.css' | asset_url | stylesheet_tag }}
 {{ 'collection-products.css' | asset_url | stylesheet_tag }}
 {{ 'slider-settings.css' | asset_url | stylesheet_tag }}
@@ -8,6 +9,7 @@
 <link href="{{ 'loading.css' | asset_url }}" rel="stylesheet" media="print" onload="this.media='all'">
 {{ 'button-style.css' | asset_url | stylesheet_tag }}
 <link href="{{ 'custom-effect.css' | asset_url }}" rel="stylesheet" media="print" onload="this.media='all'">
+{%- endcapture -%}
 
 {%- liquid
   assign sid = section.id
@@ -77,35 +79,29 @@
     endif
   endif
 
-  if display_type == "2" and pr_link == nil
-    assign rid            = 'relatedt4_' | append: product.id
-    assign relatedt4__tag = product.tags | where: 'relatedt4_' | first | default: rid | remove: 'relatedt4_'
-    assign pr_link        = linklists[relatedt4__tag].links | where: "type", "product_link"
+  assign grid_class = 't4s_box_pr_grid t4s-products t4s-justify-content-center t4s-text-' | append: se_stts.content_align | append: ' t4s_' | append: image_ratio | append: ' t4s_position_' | append: se_stts.image_position | append: ' t4s_' | append: se_stts.image_size | append: ' t4s-row t4s-row-cols-lg-' | append: se_stts.col_dk | append: ' t4s-row-cols-md-' | append: se_stts.col_tb | append: ' t4s-row-cols-' | append: se_stts.col_mb | append: ' t4s-gx-md-' | append: se_stts.space_h_item | append: ' t4s-gy-md-' | append: se_stts.space_v_item | append: ' t4s-gx-' | append: se_stts.space_h_item_mb | append: ' t4s-gy-' | append: se_stts.space_v_item_mb
+  assign slider_class = 't4s-flicky-slider t4s_box_pr_slider t4s-products t4s-text-' | append: se_stts.content_align | append: ' t4s_' | append: image_ratio | append: ' t4s_position_' | append: se_stts.image_position | append: ' t4s_' | append: se_stts.image_size | append: ' t4s-row t4s-row-cols-lg-' | append: se_stts.col_dk | append: ' t4s-row-cols-md-' | append: se_stts.col_tb | append: ' t4s-row-cols-' | append: se_stts.col_mb | append: ' t4s-gx-md-' | append: se_stts.space_h_item | append: ' t4s-gy-md-' | append: se_stts.space_v_item | append: ' t4s-gx-' | append: se_stts.space_h_item_mb | append: ' t4s-gy-' | append: se_stts.space_v_item_mb
+  if se_stts.nav_btn
+    assign slider_class = slider_class | append: ' t4s-slider-btn-style-' | append: se_stts.btn_owl | append: ' t4s-slider-btn-pos-' | append: se_stts.btns_pos | append: ' t4s-slider-btn-' | append: se_stts.btn_shape | append: ' t4s-slider-btn-' | append: se_stts.btn_size | append: ' t4s-slider-btn-cl-' | append: se_stts.btn_cl | append: ' t4s-slider-btn-vi-' | append: se_stts.btn_vi | append: ' t4s-slider-btn-hidden-mobile-' | append: se_stts.btn_hidden_mobile
   endif
+  if se_stts.nav_dot == true
+    assign slider_class = slider_class | append: ' t4s-dots-style-' | append: se_stts.dot_owl | append: ' t4s-dots-cl-' | append: se_stts.dots_cl | append: ' t4s-dots-round-' | append: se_stts.dots_round | append: ' t4s-dots-hidden-mobile-' | append: se_stts.dots_hidden_mobile
+  endif
+  assign slider_class = slider_class | append: ' flickityt4s flickityt4s-later'
+  if se_stts.center_slide
+    assign slider_class = slider_class | append: ' is-carousel-center'
+  endif
+  assign au_time_ms = se_stts.au_time | times: 1000
+  assign flickity_js = '{"setPrevNextButtons":true,"arrowIcon":"' | append: arrow_icon | append: '","imagesLoaded": 0,"adaptiveHeight": 0, "contain": 1, "groupCells": "100%", "dragThreshold" : 5, "cellAlign": "left","wrapAround": ' | append: se_stts.loop | append: ',"prevNextButtons": ' | append: se_stts.nav_btn | append: ',"percentPosition": 1,"pageDots": ' | append: se_stts.nav_dot | append: ', "autoPlay" : ' | append: au_time_ms | append: ', "pauseAutoPlayOnHover" : ' | append: se_stts.au_hover | append: ',"centerSlide": ' | append: se_stts.center_slide | append: ' }'
+  assign slider_style = '--space-dots: ' | append: se_stts.dots_space | append: 'px;--flickity-btn-pos: ' | append: se_stts.space_h_item | append: 'px;--flickity-btn-pos-mb: ' | append: se_stts.space_h_item_mb | append: 'px;--tophead_mb: ' | append: se_stts.tophead_mb | append: 'px;'
 -%}
 
-<div data-not-main class="t4s-section-inner t4s_nt_se_{{ sid }} t4s_se_{{ sid }} {{ stt_layout }} {% if stt_image_bg != blank and stt_layout != 't4s-se-container' %} t4s-has-imgbg lazyloadt4s {% endif %}" {% if stt_image_bg != blank and stt_layout != 't4s-se-container' %} data-bgset="{{ stt_image_bg | image_url: width: 1 }}" data-sizes="auto" data-optimumx="2" {% endif %} {% render 'section_style', se_stts: se_stts %} >
-  {{- html_layout[0] -}}
-  {%- if stt_layout == 't4s-se-container' -%}<div class="t4s-container-inner {% if stt_image_bg != blank %} t4s-has-imgbg lazyloadt4s {% endif %}" {% if stt_image_bg != blank %} data-bgset="{{ stt_image_bg | image_url: width: 1 }}" data-sizes="auto" data-optimumx="2" {% endif %} >{%- endif -%}
-  {%- render 'section_tophead', se_stts: se_stts -%}
-
-  {%- liquid
-    assign grid_class = 't4s_box_pr_grid t4s-products t4s-justify-content-center t4s-text-' | append: se_stts.content_align | append: ' t4s_' | append: image_ratio | append: ' t4s_position_' | append: se_stts.image_position | append: ' t4s_' | append: se_stts.image_size | append: ' t4s-row t4s-row-cols-lg-' | append: se_stts.col_dk | append: ' t4s-row-cols-md-' | append: se_stts.col_tb | append: ' t4s-row-cols-' | append: se_stts.col_mb | append: ' t4s-gx-md-' | append: se_stts.space_h_item | append: ' t4s-gy-md-' | append: se_stts.space_v_item | append: ' t4s-gx-' | append: se_stts.space_h_item_mb | append: ' t4s-gy-' | append: se_stts.space_v_item_mb
-    assign slider_class = 't4s-flicky-slider t4s_box_pr_slider t4s-products t4s-text-' | append: se_stts.content_align | append: ' t4s_' | append: image_ratio | append: ' t4s_position_' | append: se_stts.image_position | append: ' t4s_' | append: se_stts.image_size | append: ' t4s-row t4s-row-cols-lg-' | append: se_stts.col_dk | append: ' t4s-row-cols-md-' | append: se_stts.col_tb | append: ' t4s-row-cols-' | append: se_stts.col_mb | append: ' t4s-gx-md-' | append: se_stts.space_h_item | append: ' t4s-gy-md-' | append: se_stts.space_v_item | append: ' t4s-gx-' | append: se_stts.space_h_item_mb | append: ' t4s-gy-' | append: se_stts.space_v_item_mb
-    if se_stts.nav_btn
-      assign slider_class = slider_class | append: ' t4s-slider-btn-style-' | append: se_stts.btn_owl | append: ' t4s-slider-btn-' | append: se_stts.btn_shape | append: ' t4s-slider-btn-' | append: se_stts.btn_size | append: ' t4s-slider-btn-cl-' | append: se_stts.btn_cl | append: ' t4s-slider-btn-vi-' | append: se_stts.btn_vi | append: ' t4s-slider-btn-hidden-mobile-' | append: se_stts.btn_hidden_mobile
-    endif
-    if se_stts.nav_dot == true
-      assign slider_class = slider_class | append: ' t4s-dots-style-' | append: se_stts.dot_owl | append: ' t4s-dots-cl-' | append: se_stts.dots_cl | append: ' t4s-dots-round-' | append: se_stts.dots_round | append: ' t4s-dots-hidden-mobile-' | append: se_stts.dots_hidden_mobile
-    endif
-    assign slider_class = slider_class | append: ' flickityt4s flickityt4s-later'
-    assign au_time_ms = se_stts.au_time | times: 1000
-    assign flickity_js = '{"setPrevNextButtons":true,"arrowIcon":"' | append: arrow_icon | append: '","imagesLoaded": 0,"adaptiveHeight": 0, "contain": 1, "groupCells": "100%", "dragThreshold" : 5, "cellAlign": "left","wrapAround": ' | append: se_stts.loop | append: ',"prevNextButtons": ' | append: se_stts.nav_btn | append: ',"percentPosition": 1,"pageDots": ' | append: se_stts.nav_dot | append: ', "autoPlay" : ' | append: au_time_ms | append: ', "pauseAutoPlayOnHover" : ' | append: se_stts.au_hover | append: ' }'
-    assign slider_style = '--space-dots: ' | append: se_stts.dots_space | append: 'px;--flickity-btn-pos: ' | append: se_stts.space_h_item | append: 'px;--flickity-btn-pos-mb: ' | append: se_stts.space_h_item_mb | append: 'px;'
-  -%}
-
-  {%- comment -%} Case: Dynamic recommendations — products already loaded {%- endcomment -%}
-  {%- if display_type == "3" and recommendations.products_count > 0 -%}
+{%- comment -%} Case: Dynamic recommendations — products already loaded {%- endcomment -%}
+{%- if display_type == "3" and recommendations.products_count > 0 -%}
+  <div class="t4s-section-inner t4s_nt_se_{{ sid }} t4s_se_{{ sid }} {{ stt_layout }} {% if stt_image_bg != blank and stt_layout != 't4s-se-container' %} t4s-has-imgbg lazyloadt4s {% endif %}" {% if stt_image_bg != blank and stt_layout != 't4s-se-container' %} data-bgset="{{ stt_image_bg | image_url: width: 1 }}" data-sizes="auto" data-optimumx="2" {% endif %} {% render 'section_style', se_stts: se_stts %} >
+    {{- html_layout[0] -}}
+    {%- if stt_layout == 't4s-se-container' -%}<div class="t4s-container-inner {% if stt_image_bg != blank %} t4s-has-imgbg lazyloadt4s {% endif %}" {% if stt_image_bg != blank %} data-bgset="{{ stt_image_bg | image_url: width: 1 }}" data-sizes="auto" data-optimumx="2" {% endif %}>{%- endif -%}
+    {%- render 'section_tophead', se_stts: se_stts -%}
     {%- if layout_des == "1" -%}
       <div data-contentlm-replace class="{{ grid_class }}">
     {%- else -%}
@@ -152,10 +148,16 @@
         endcase
       -%}
     </div>
+    {{- html_layout[1] -}}
+  </div>
 
-  {%- comment -%} Case: Linklist products on search page {%- endcomment -%}
-  {%- elsif display_type == "2" and search_types contains 'page' and results_count > 0 -%}
-    {%- assign index = 0 -%}
+{%- comment -%} Case: Linklist products on search page {%- endcomment -%}
+{%- elsif display_type == "2" and search_types contains 'page' and results_count > 0 -%}
+  {%- assign index = 0 -%}
+  <div class="t4s-section-inner t4s_nt_se_{{ sid }} t4s_se_{{ sid }} {{ stt_layout }} {% if stt_image_bg != blank and stt_layout != 't4s-se-container' %} t4s-has-imgbg lazyloadt4s {% endif %}" {% if stt_image_bg != blank and stt_layout != 't4s-se-container' %} data-bgset="{{ stt_image_bg | image_url: width: 1 }}" data-sizes="auto" data-optimumx="2" {% endif %} {% render 'section_style', se_stts: se_stts %} >
+    {{- html_layout[0] -}}
+    {%- if stt_layout == 't4s-se-container' -%}<div class="t4s-container-inner {% if stt_image_bg != blank %} t4s-has-imgbg lazyloadt4s {% endif %}" {% if stt_image_bg != blank %} data-bgset="{{ stt_image_bg | image_url: width: 1 }}" data-sizes="auto" data-optimumx="2" {% endif %}>{%- endif -%}
+    {%- render 'section_tophead', se_stts: se_stts -%}
     {%- if layout_des == "1" -%}
       <div data-contentlm-replace class="{{ grid_class }}">
     {%- else -%}
@@ -178,10 +180,16 @@
         {%- endcase -%}
       {%- endfor -%}
     </div>
+    {{- html_layout[1] -}}
+  </div>
 
-  {%- comment -%} Case: Collection products on search page {%- endcomment -%}
-  {%- elsif display_type == "1" and collection and search_types contains 'page' and results_count > 0 -%}
-    {%- assign index = 0 -%}
+{%- comment -%} Case: Collection products on search page {%- endcomment -%}
+{%- elsif display_type == "1" and collection and search_types contains 'page' and results_count > 0 -%}
+  {%- assign index = 0 -%}
+  <div class="t4s-section-inner t4s_nt_se_{{ sid }} t4s_se_{{ sid }} {{ stt_layout }} {% if stt_image_bg != blank and stt_layout != 't4s-se-container' %} t4s-has-imgbg lazyloadt4s {% endif %}" {% if stt_image_bg != blank and stt_layout != 't4s-se-container' %} data-bgset="{{ stt_image_bg | image_url: width: 1 }}" data-sizes="auto" data-optimumx="2" {% endif %} {% render 'section_style', se_stts: se_stts %} >
+    {{- html_layout[0] -}}
+    {%- if stt_layout == 't4s-se-container' -%}<div class="t4s-container-inner {% if stt_image_bg != blank %} t4s-has-imgbg lazyloadt4s {% endif %}" {% if stt_image_bg != blank %} data-bgset="{{ stt_image_bg | image_url: width: 1 }}" data-sizes="auto" data-optimumx="2" {% endif %}>{%- endif -%}
+    {%- render 'section_tophead', se_stts: se_stts -%}
     {%- if layout_des == "1" -%}
       <div data-collection-url="{{ collection.url }}" data-contentlm-replace class="{{ grid_class }}">
     {%- else -%}
@@ -204,9 +212,15 @@
         {%- endcase -%}
       {%- endfor -%}
     </div>
+    {{- html_layout[1] -}}
+  </div>
 
-  {%- comment -%} Case: Search results (display types 4/5 on search page) {%- endcomment -%}
-  {%- elsif search.results.size > 0 and request.page_type == 'search' -%}
+{%- comment -%} Case: Search results (display types 4/5 on search page) {%- endcomment -%}
+{%- elsif search.results.size > 0 and request.page_type == 'search' -%}
+  <div class="t4s-section-inner t4s_nt_se_{{ sid }} t4s_se_{{ sid }} {{ stt_layout }} {% if stt_image_bg != blank and stt_layout != 't4s-se-container' %} t4s-has-imgbg lazyloadt4s {% endif %}" {% if stt_image_bg != blank and stt_layout != 't4s-se-container' %} data-bgset="{{ stt_image_bg | image_url: width: 1 }}" data-sizes="auto" data-optimumx="2" {% endif %} {% render 'section_style', se_stts: se_stts %} >
+    {{- html_layout[0] -}}
+    {%- if stt_layout == 't4s-se-container' -%}<div class="t4s-container-inner {% if stt_image_bg != blank %} t4s-has-imgbg lazyloadt4s {% endif %}" {% if stt_image_bg != blank %} data-bgset="{{ stt_image_bg | image_url: width: 1 }}" data-sizes="auto" data-optimumx="2" {% endif %}>{%- endif -%}
+    {%- render 'section_tophead', se_stts: se_stts -%}
     {%- if layout_des == "1" -%}
       <div data-contentlm-replace class="{{ grid_class }}">
     {%- else -%}
@@ -228,22 +242,26 @@
         {%- endfor -%}
       {%- endpaginate -%}
     </div>
+    {{- html_layout[1] -}}
+  </div>
 
-  {%- comment -%} AJAX loading states — products will be injected by JS {%- endcomment -%}
-  {%- elsif display_type == "3" and recommendations.performed == false -%}
-    <div class="t4s-product-extra" data-sid="{{ section.id }}" data-baseurl="{{ routes.product_recommendations_url }}" id="pr_recommendations" data-id="{{ product.id }}" data-limit="{{ limit }}" data-type='{{ display_type }}' data-expands="-1"><div class="t4s-loading--bg"></div></div>
-  {%- elsif display_type == "2" and pr_link.size > 0 -%}
-    <div class="t4s-product-extra" data-sid="{{ section.id }}" data-baseurl="/?type=page&q={{ product.id }}+{{ relatedt4__tag }}" id="pr_recommendations" data-id="{{ product.id }}" data-limit="{{ limit }}" data-type='{{ display_type }}' data-expands="-1"><div class="t4s-loading--bg"></div></div>
-  {%- elsif display_type == "1" and collection -%}
-    <div class="t4s-product-extra" data-sid="{{ section.id }}" data-baseurl="/?type=page&q={{ product.id }}+{{ collection.handle }}" id="pr_recommendations" data-id="{{ product.id }}" data-limit="{{ limit }}" data-type='{{ display_type }}' data-expands="-1"><div class="t4s-loading--bg"></div></div>
-  {%- elsif display_type == "4" and product.vendor != blank -%}
-    <div class="t4s-product-extra" data-sid="{{ section.id }}" data-baseurl="/?type=product&options%5Bunavailable_products%5D=last&options%5Bprefix%5D=none&q=vendor%3A{{ product.vendor | url_encode }}%20-id%3A{{ product.id }}" id="pr_recommendations" data-type='{{ display_type }}' data-expands="-1"><div class="t4s-loading--bg"></div></div>
-  {%- elsif display_type == "5" and product.type != blank -%}
-    <div class="t4s-product-extra" data-sid="{{ section.id }}" data-baseurl="/?type=product&options%5Bunavailable_products%5D=last&options%5Bprefix%5D=none&q=product_type%3A{{ product.type | url_encode }}%20-id%3A{{ product.id }}" id="pr_recommendations" data-type='{{ display_type }}' data-expands="-1"><div class="t4s-loading--bg"></div></div>
-  {%- endif -%}
-
-  {{- html_layout[1] -}}
-</div>
+{%- comment -%} AJAX loading states — products will be injected by JS {%- endcomment -%}
+{%- elsif display_type == "3" and recommendations.performed == false -%}
+  {{- file_style -}}<div class="t4s-product-extra" data-sid="{{ section.id }}" data-baseurl="{{ routes.product_recommendations_url }}" id="pr_recommendations" data-id="{{ product.id }}" data-limit="{{ limit }}" data-type='{{ display_type }}' data-expands="-1"><div class="t4s-loading--bg"></div></div>
+{%- elsif display_type == "2" -%}
+  {%- liquid
+    assign rid            = 'relatedt4_' | append: product.id
+    assign relatedt4__tag = product.tags | where: 'relatedt4_' | first | default: rid | remove: 'relatedt4_'
+    assign pr_link        = linklists[relatedt4__tag].links | where: "type", "product_link"
+  -%}
+  {%- if pr_link.size > 0 -%}{{- file_style -}}<div class="t4s-product-extra" data-sid="{{ section.id }}" data-baseurl="/?type=page&q={{ product.id }}+{{ relatedt4__tag }}" id="pr_recommendations" data-id="{{ product.id }}" data-limit="{{ limit }}" data-type='{{ display_type }}' data-expands="-1"><div class="t4s-loading--bg"></div></div>{%- endif -%}
+{%- elsif display_type == "1" and collection -%}
+  {{- file_style -}}<div class="t4s-product-extra" data-sid="{{ section.id }}" data-baseurl="/?type=page&q={{ product.id }}+{{ collection.handle }}" id="pr_recommendations" data-id="{{ product.id }}" data-limit="{{ limit }}" data-type='{{ display_type }}' data-expands="-1"><div class="t4s-loading--bg"></div></div>
+{%- elsif display_type == "4" and product.vendor != blank -%}
+  {{- file_style -}}<div class="t4s-product-extra" data-sid="{{ section.id }}" data-baseurl="/?type=product&options%5Bunavailable_products%5D=last&options%5Bprefix%5D=none&q=vendor%3A{{ product.vendor | url_encode }}%20-id%3A{{ product.id }}" id="pr_recommendations" data-type='{{ display_type }}' data-expands="-1"><div class="t4s-loading--bg"></div></div>
+{%- elsif display_type == "5" and product.type != blank -%}
+  {{- file_style -}}<div class="t4s-product-extra" data-sid="{{ section.id }}" data-baseurl="/?type=product&options%5Bunavailable_products%5D=last&options%5Bprefix%5D=none&q=product_type%3A{{ product.type | url_encode }}%20-id%3A{{ product.id }}" id="pr_recommendations" data-type='{{ display_type }}' data-expands="-1"><div class="t4s-loading--bg"></div></div>
+{%- endif -%}
 
 {%- endfor -%}
 
