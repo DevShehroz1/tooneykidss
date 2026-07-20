@@ -3429,3 +3429,12 @@ border-radius: 50% !important;
         transform: translateX(-100%)
     }
 } */
+
+
+
+
+
+span.t4s-badge-item.t4s-badge-sale {
+    background: red !important;
+    color: white !important;
+}
