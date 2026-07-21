@@ -226,7 +226,7 @@
         "height_mb": 450,
         "eff": "fade",
         "loop": true,
-        "au_time": 8.5,
+        "au_time": 4,
         "au_hover": true,
         "nav_btn": false,
         "btn_vi": "hover",
