@@ -458,6 +458,7 @@
         "blocks": {
           "announcement_KVyp3t": {
             "type": "announcement",
+            "disabled": true,
             "settings": {
               "link": "",
               "content": "<p>NATIONWIDE CASH ON DELIVERY </p>",
