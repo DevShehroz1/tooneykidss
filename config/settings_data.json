@@ -642,6 +642,19 @@
               "lb_cl": ""
             }
           },
+          "base_kjQQJn": {
+            "type": "base",
+            "settings": {
+              "title": "Girls",
+              "url": "shopify://collections/girls",
+              "open_link": "_self",
+              "icon": "",
+              "cus_cl": false,
+              "cl": "#ec0101",
+              "lb": "",
+              "lb_cl": ""
+            }
+          },
           "base_wjrMJr": {
             "type": "base",
             "settings": {
@@ -727,6 +740,7 @@
           "base_3eCR7y",
           "base_YbaqzL",
           "base_QFbi4Q",
+          "base_kjQQJn",
           "base_wjrMJr",
           "drop_kN77xX",
           "drop_kjJA3D",
@@ -1409,6 +1423,19 @@
               "icon": ""
             }
           },
+          "menu_ifPyer": {
+            "type": "menu",
+            "settings": {
+              "title": "Girls",
+              "url": "shopify://collections/girls",
+              "open_link": "_self",
+              "menu": "",
+              "lb": "",
+              "lb_cl": "",
+              "icons_op": "2",
+              "icon": "las la-chair"
+            }
+          },
           "mb_nav-1": {
             "type": "menu",
             "settings": {
@@ -1473,6 +1500,7 @@
         "block_order": [
           "mb_nav-5",
           "mb_nav-0",
+          "menu_ifPyer",
           "mb_nav-1",
           "menu_CLib6f",
           "mb_nav-3",
