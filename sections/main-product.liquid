@@ -234,21 +234,22 @@ endif -%}
       .tk-sc-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:99999;align-items:center;justify-content:center;padding:20px}
       .tk-sc-overlay.is-open{display:flex}
       body.tk-sc-open .t4s-single-product-badge{visibility:hidden!important}
-      .tk-sc-modal{position:relative;max-width:680px;width:100%;background:#fff;border-radius:8px;overflow:hidden}
+      .tk-sc-wrap{position:relative;max-width:680px;width:100%}
+      .tk-sc-modal{width:100%;background:#fff;border-radius:8px;overflow:hidden}
       .tk-sc-modal img{width:100%;height:auto;display:block}
-      .tk-sc-close{position:absolute;top:10px;right:10px;width:32px;height:32px;background:rgba(0,0,0,.55);border:none;border-radius:50%;color:#fff;font-size:20px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s;z-index:1}
-      .tk-sc-close:hover{background:rgba(0,0,0,.8)}
+      .tk-sc-close{position:absolute;top:-16px;right:-16px;width:36px;height:36px;background:#fff;border:none;border-radius:50%;color:#222;font-size:26px;font-weight:300;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 10px rgba(0,0,0,.3);transition:background .15s;z-index:1}
+      .tk-sc-close:hover{background:#f0f0f0}
     </style>
     <button class="tk-sc-btn" data-sc-open="{{ _sc_id }}">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
       Size Guide
     </button>
     <div id="{{ _sc_id }}" class="tk-sc-overlay" role="dialog" aria-modal="true">
-      <div class="tk-sc-modal">
-        <button class="tk-sc-close" data-sc-close aria-label="Close">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="2" y1="2" x2="18" y2="18"/><line x1="18" y1="2" x2="2" y2="18"/></svg>
-        </button>
-        <img src="{{ _sc_src }}" alt="Size Guide" loading="lazy">
+      <div class="tk-sc-wrap">
+        <button class="tk-sc-close" data-sc-close aria-label="Close">&#x2715;</button>
+        <div class="tk-sc-modal">
+          <img src="{{ _sc_src }}" alt="Size Guide" loading="lazy">
+        </div>
       </div>
     </div>
     <script>
