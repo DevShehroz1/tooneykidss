@@ -227,51 +227,49 @@ endif -%}
   {%- assign _sc_img = product.metafields.custom.size_chart -%}
   {%- if _sc_img != blank -%}
     {%- assign _sc_src = _sc_img | image_url: width: 1200 -%}
-    {%- assign _sc_id = 'tk-size-chart-' | append: product.id -%}
+    {%- assign _sc_id = 'tk-sc-' | append: product.id -%}
     <style>
-      .tk-sc-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        padding: 6px 14px;
-        background: #1a1a1a;
-        color: #fff !important;
-        font-size: 12px;
-        font-weight: 600;
-        letter-spacing: 0.05em;
-        text-transform: uppercase;
-        text-decoration: none !important;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: background 0.2s;
-        vertical-align: middle;
-      }
-      .tk-sc-btn:hover { background: #333; }
-      .tk-sc-popup {
-        background: #fff;
-        padding: 20px;
-        max-width: 680px;
-        width: 90vw;
-        margin: 0 auto;
-        border-radius: 6px;
-        position: relative;
-      }
-      .tk-sc-popup img {
-        width: 100%;
-        height: auto;
-        display: block;
-        border-radius: 2px;
-      }
+      .tk-sc-btn{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;background:#1E2D4A;color:#fff!important;font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;text-decoration:none!important;border:none;border-radius:4px;cursor:pointer;transition:background .2s;vertical-align:middle}
+      .tk-sc-btn:hover{background:#16233a}
+      .tk-sc-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:99999;align-items:center;justify-content:center;padding:20px}
+      .tk-sc-overlay.is-open{display:flex}
+      .tk-sc-modal{position:relative;max-width:680px;width:100%;background:#fff;border-radius:6px;padding:16px}
+      .tk-sc-modal img{width:100%;height:auto;display:block;border-radius:2px}
+      .tk-sc-close{position:absolute;top:-14px;right:-14px;width:30px;height:30px;background:#fff;border:none;border-radius:50%;font-size:18px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.2)}
     </style>
-    <a class="tk-sc-btn" href="#{{ _sc_id }}" data-opennt="#{{ _sc_id }}" data-open-mfp>
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+    <button class="tk-sc-btn" data-sc-open="{{ _sc_id }}">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
       Size Guide
-    </a>
-    <div id="{{ _sc_id }}" class="mfp-hide">
-      <div class="tk-sc-popup">
-        <img src="{{ _sc_src }}" alt="Size Guide">
+    </button>
+    <div id="{{ _sc_id }}" class="tk-sc-overlay" role="dialog" aria-modal="true">
+      <div class="tk-sc-modal">
+        <button class="tk-sc-close" data-sc-close aria-label="Close">&times;</button>
+        <img src="{{ _sc_src }}" alt="Size Guide" loading="lazy">
       </div>
     </div>
+    <script>
+      (function(){
+        var btn = document.querySelector('[data-sc-open="{{ _sc_id }}"]');
+        var overlay = document.getElementById('{{ _sc_id }}');
+        if (!btn || !overlay) return;
+        btn.addEventListener('click', function(){
+          overlay.classList.add('is-open');
+          document.body.style.overflow = 'hidden';
+        });
+        overlay.addEventListener('click', function(e){
+          if (e.target === overlay || e.target.closest('[data-sc-close]')) {
+            overlay.classList.remove('is-open');
+            document.body.style.overflow = '';
+          }
+        });
+        document.addEventListener('keydown', function(e){
+          if (e.key === 'Escape') {
+            overlay.classList.remove('is-open');
+            document.body.style.overflow = '';
+          }
+        });
+      })();
+    </script>
   {%- endif -%}
 {%- endcapture -%}
 
