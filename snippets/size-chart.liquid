@@ -28,7 +28,11 @@
 </style>
 
 {%- if ck_s -%}
-  {%- if sc_type == '1' and page_size != blank -%}
+  {%- if sc_type == '3' and meta_url != blank -%}
+    <a class="t4s-ch t4s-btn__size-chart size-chart-link" data-no-instant rel="nofollow" href="{{ meta_url }}" target="_blank">
+      {{ 'products.product.product_size_guide' | t | default: 'Size Guide' }}
+    </a>
+  {%- elsif sc_type == '1' and page_size != blank -%}
     <a class="t4s-ch t4s-btn__size-chart size-chart-link" data-no-instant rel="nofollow" href="{{ page_size.url }}" data-class="t4s-mfp-btn-close-inline" data-id="t4s-pr-popup__size-guide" data-storageid="{{ page_size.url }}" data-open-mfp-ajax data-style="max-width:950px" data-mfp-src="{{ page_size.url }}/?section_id=ajax_popup">
       {{ 'products.product.product_size_guide' | t | default: 'Size Guide' }}
     </a>
