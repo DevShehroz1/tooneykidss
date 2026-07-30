@@ -503,10 +503,8 @@ endif -%}
                 
                 {%- when 'size_delivery_ask' -%}
                   <div class="t4s-extra-link" {{ block.shopify_attributes }}>
-                    {%- if bk_size_chart != '1' and pos_sizeg == '1' -%}
+                    {%- if pos_sizeg == '1' and html_sizeg != blank -%}
                       {{ html_sizeg }}
-                    {%- elsif bk_size_chart == '1' and pos_sizeg == '1' -%}
-                      {%- comment -%} Size chart is disabled {%- endcomment -%}
                     {%- endif -%}
 
                     {%- assign page_delivery = bk_stts.page_dr %}{% if bk_stts.delivery and page_delivery != blank -%}
