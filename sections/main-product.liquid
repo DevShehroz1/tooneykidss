@@ -503,7 +503,7 @@ endif -%}
                 
                 {%- when 'size_delivery_ask' -%}
                   <div class="t4s-extra-link" {{ block.shopify_attributes }}>
-                    {%- if pos_sizeg == '1' and html_sizeg != blank -%}
+                    {%- if html_sizeg != blank -%}
                       {{ html_sizeg }}
                     {%- endif -%}
 
