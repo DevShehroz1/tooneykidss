@@ -134,7 +134,7 @@
        assign custom_badge_lightness   = settings.custom_badge_color | color_extract: 'lightness' %}
 
         --sale-badge-background    : {{ settings.sale_badge_color }};
-        --sale-badge-color         : {% if sale_badge_lightness < 85 %}#fff{% else %}#222{% endif %};
+        --sale-badge-color         : #000;
         --new-badge-background     : {{ settings.new_badge_color }};
         --new-badge-color          : {% if new_badge_lightness < 85 %}#fff{% else %}#222{% endif %};
         --preorder-badge-background: {{ settings.preorder_badge_color }};

@@ -143,7 +143,7 @@
        assign soldout_badge_lightness  = settings.soldout_badge_color | color_extract: 'lightness' %}
 
         --sale-badge-background    : {{ settings.sale_badge_color }};
-        --sale-badge-color         : {% if sale_badge_lightness < 85 %}#fff{% else %}#222{% endif %};
+        --sale-badge-color         : #000;
         --soldout-badge-background : {{ settings.soldout_badge_color }};
         --soldout-badge-color      : {% if soldout_badge_lightness < 85 %}#fff{% else %}#222{% endif %};
 
