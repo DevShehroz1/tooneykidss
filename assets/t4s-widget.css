@@ -85,7 +85,8 @@ h5.t4s-widget-title:after {
     margin: 5px;
 }
 .nt_label, .nt_label.on, .qs_label.onsale, .txt_sale {
-    background-color: var(--sale-badge-background);
+    background-color: #FFE35B !important;
+    color: #000 !important;
 }
 /* widget blog category */
 .t4s-blog-categories .t4s-cat-item {

@@ -29,8 +29,8 @@
     border-radius: 30px;
 }
 .t4s-single-product-badge > .t4s-badge-sale {
-    color: var(--sale-badge-color);
-    background-color: var(--sale-badge-background);
+    color: #000 !important;
+    background-color: #FFE35B !important;
 }
 .t4s-single-product-badge > .t4s-badge-new {
     color: var(--new-badge-color);

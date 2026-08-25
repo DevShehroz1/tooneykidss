@@ -56,12 +56,12 @@
   display: inline-block;
 }
 .t4s-product-quick-shop .t4s-product-price span.t4s-txt-sale:not(.t4s-dn){
-    color:var(--sale-badge-color);
+    color: #000 !important;
     border-radius: 4px;
     padding: 4px 8px;
     margin: 0 5px;
     line-height: 1.2;
-    background-color: var(--sale-badge-background);
+    background-color: #FFE35B !important;
     font-size: 12px;
     position: relative;
     top: -3px;
