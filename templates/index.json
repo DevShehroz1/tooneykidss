@@ -94,8 +94,8 @@
         "164602873867eb3815-4": {
           "type": "image_parent",
           "settings": {
-            "image": "shopify://shop_images/1920x550_03a8040e-e7b0-4419-a8e0-2a1d9f5824c2.jpg",
-            "image_mb": "shopify://shop_images/1100x1500_3baa4be8-537a-4558-b0c2-1ccb6b473dea.jpg",
+            "image": "shopify://shop_images/1920x550_1.jpg",
+            "image_mb": "shopify://shop_images/1100x1500_1.jpg",
             "image_position": "8",
             "cl_img": "",
             "link_img1": "shopify://collections/all",
@@ -133,6 +133,7 @@
         },
         "image_parent_brFbHL": {
           "type": "image_parent",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/1920x550.jpg",
             "image_mb": "shopify://shop_images/1100X1500.jpg",
