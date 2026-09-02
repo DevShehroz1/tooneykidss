@@ -456,6 +456,17 @@
       "announcement-bar": {
         "type": "announcement-bar",
         "blocks": {
+          "announcement_7Czhtm": {
+            "type": "announcement",
+            "settings": {
+              "link": "",
+              "content": "<p>Upto 70% off | Shop the sale before it ends</p>",
+              "adding_border": false,
+              "countdown": "2023/12/26",
+              "txt_day": "days",
+              "dayx": 0
+            }
+          },
           "announcement_KVyp3t": {
             "type": "announcement",
             "settings": {
@@ -489,25 +500,13 @@
               "txt_day": "days",
               "dayx": 0
             }
-          },
-          "announcement_7Czhtm": {
-            "type": "announcement",
-            "disabled": true,
-            "settings": {
-              "link": "",
-              "content": "<p>Flat 50% off | Shop the sale before it ends</p>",
-              "adding_border": false,
-              "countdown": "2023/12/26",
-              "txt_day": "days",
-              "dayx": 0
-            }
           }
         },
         "block_order": [
+          "announcement_7Czhtm",
           "announcement_KVyp3t",
           "announcement_RCCNgX",
-          "announcement_phWKed",
-          "announcement_7Czhtm"
+          "announcement_phWKed"
         ],
         "settings": {
           "show_announcement": true,
